@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jose Ashmitha V. | QA Engineer &amp; Software Tester Portfolio</title>
+  <meta name="description" content="Professional portfolio of Jose Ashmitha V. — Aspiring Software Tester / QA Engineer specializing in manual testing, test case design, defect reporting, and STLC methodologies." />
+  <meta name="theme-color" content="#070d18" />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== ANIMATED BACKGROUND CANVAS ===== -->
+  <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="header">
+    <nav class="navbar" id="navbar" aria-label="Main Navigation">
+      <div class="nav-container">
+        <a href="#home" class="nav-logo" aria-label="Jose Ashmitha Home">
+          <div class="logo-badge">
+            <span class="logo-text">JA<span class="logo-accent">.</span></span>
+          </div>
+          <div class="logo-details">
+            <span class="logo-name">Jose Ashmitha</span>
+            <span class="logo-sub">QA Engineer</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks" role="menubar">
+          <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
+          <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+          <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
+          <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+          <li role="none"><a href="#testcases" class="nav-link" role="menuitem">Test Cases</a></li>
+          <li role="none"><a href="#bugreports" class="nav-link" role="menuitem">Bug Reports</a></li>
+          <li role="none"><a href="#certifications" class="nav-link" role="menuitem">Certifications</a></li>
+          <li role="none"><a href="#resume" class="nav-link" role="menuitem">Resume</a></li>
+          <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle light or dark theme" title="Toggle theme">
+            <i class="fas fa-moon moon-icon" aria-hidden="true"></i>
+            <i class="fas fa-sun sun-icon" aria-hidden="true"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HOME / HERO SECTION ===== -->
+  <section id="home" class="hero-section">
+    <div class="hero-ambient-glow"></div>
+    <div class="container hero-container">
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span>Open to Opportunities &bull; QA Ready</span>
+        </div>
+        <p class="hero-greeting">Hi, I'm</p>
+        <h1 class="hero-name">Jose Ashmitha <span class="name-accent">V.</span></h1>
+        
+        <div class="hero-role">
+          <span class="role-prefix">Aspiring</span>
+          <span class="role-type-wrapper">
+            <span class="role-typed" id="typedRole">Software Tester</span>
+            <span class="cursor-blink">|</span>
+          </span>
+        </div>
+
+        <p class="hero-intro">
+          A dedicated <strong>B.Sc. Computer Science (AI &amp; Data Science)</strong> graduate from 
+          <strong>Karpagam Academy of Higher Education</strong> (First Class with Distinction). 
+          Passionate about quality assurance, systematic manual testing, requirement analysis, and clear defect reporting that empowers development teams to deliver rock-solid software.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="#projects" class="btn-primary">
+            <i class="fas fa-layer-group"></i> View My Work
+          </a>
+          <a href="#contact" class="btn-secondary">
+            <i class="fas fa-paper-plane"></i> Contact Me
+          </a>
+          <a href="resume.pdf" download class="btn-ghost" title="Download Official Resume">
+            <i class="fas fa-file-arrow-down"></i> Resume
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-num" data-val="1">1+</span>
+            <span class="stat-label">QA Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <span class="stat-num" data-val="50">50+</span>
+            <span class="stat-label">Test Cases</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <span class="stat-num" data-val="10">10+</span>
+            <span class="stat-label">Bug Reports</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <span class="stat-num" data-val="13">13</span>
+            <span class="stat-label">Credentials</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo-area">
+        <div class="photo-frame-outer">
+          <div class="photo-frame-glow"></div>
+          <div class="photo-frame">
+            <img
+              src="Images/Jose_Ashmitha_Navy_Portrait.png"
+              alt="Jose Ashmitha V. — QA Engineer &amp; Software Tester"
+              class="profile-photo"
+              loading="eager"
+            />
+            <div class="photo-fallback" aria-hidden="true">
+              <span class="photo-fallback-initials">JA</span>
+              <span class="photo-fallback-title">Jose Ashmitha</span>
+            </div>
+          </div>
+          <div class="photo-badge photo-badge-tl">
+            <i class="fas fa-circle-check"></i> QA Verified
+          </div>
+          <div class="photo-badge photo-badge-br">
+            <i class="fas fa-award"></i> First Class Distinction
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down to About section">
+      <span>Explore</span>
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">01 / Background</span>
+        </div>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+        <p class="section-subtitle">
+          Combining analytical data science foundations with disciplined software quality testing.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Dedicated About Profile Card -->
+        <div class="about-profile-card">
+          <div class="apc-photo-wrap">
+            <img 
+              src="Images/Jose_Ashmitha_Navy_Portrait.png" 
+              alt="Jose Ashmitha V." 
+              class="apc-photo"
+              loading="lazy"
+            />
+            <div class="apc-status-pill">
+              <span class="pulse-dot"></span> Ready to Join
+            </div>
+          </div>
+          <div class="apc-details">
+            <h3 class="apc-name">Jose Ashmitha V.</h3>
+            <p class="apc-role">Software Tester / QA Engineer</p>
+            <div class="apc-meta-list">
+              <div class="apc-meta-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>B.Sc. CS — AI &amp; Data Science</span>
+              </div>
+              <div class="apc-meta-item">
+                <i class="fas fa-university"></i>
+                <span>Karpagam Academy of Higher Education</span>
+              </div>
+              <div class="apc-meta-item">
+                <i class="fas fa-medal"></i>
+                <span>First Class with Distinction</span>
+              </div>
+              <div class="apc-meta-item">
+                <i class="fas fa-map-location-dot"></i>
+                <span>Coimbatore &bull; Chennai, Tamil Nadu</span>
+              </div>
+            </div>
+            <div class="apc-actions">
+              <a href="resume.pdf" target="_blank" class="btn-primary btn-sm">
+                <i class="fas fa-file-pdf"></i> View Resume
+              </a>
+              <a href="#contact" class="btn-secondary btn-sm">
+                <i class="fas fa-envelope"></i> Message
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Text & Highlights -->
+        <div class="about-content-col">
+          <div class="about-text-card">
+            <p class="about-lead">
+              I am an aspiring <strong>Software Tester &amp; QA Engineer</strong> driven by a passion for delivering seamless, bug-free user experiences through meticulous test planning, defect documentation, and test execution.
+            </p>
+            <p>
+              My academic background in <strong>Artificial Intelligence and Data Science</strong> provided me with an exceptional foundation in logic design, statistical data validation, and algorithmic thinking. In quality assurance, this translates into identifying subtle edge cases, preventing edge-case failures, and isolating defect root causes faster.
+            </p>
+            <p>
+              I take pride in thinking like an end-user while validating like an engineer: examining requirements systematically, crafting clear test scenarios, and filing actionable defect reports with exact reproduction steps.
+            </p>
+          </div>
+
+          <div class="about-info-grid">
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div>
+                <strong>Degree</strong>
+                <span>B.Sc. AI &amp; Data Science</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-award"></i></div>
+              <div>
+                <strong>Honors</strong>
+                <span>First Class with Distinction</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-bullseye"></i></div>
+              <div>
+                <strong>Primary Goal</strong>
+                <span>QA / Software Test Engineer</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-circle-check"></i></div>
+              <div>
+                <strong>Availability</strong>
+                <span>Immediate / Full-time</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa-mindset-box">
+            <div class="qa-mindset-header">
+              <i class="fas fa-brain"></i>
+              <h4>Core QA Mindset</h4>
+            </div>
+            <div class="mindset-chips">
+              <span class="m-chip"><i class="fas fa-check"></i> Think Like the End User</span>
+              <span class="m-chip"><i class="fas fa-check"></i> Test Boundary &amp; Negative Paths</span>
+              <span class="m-chip"><i class="fas fa-check"></i> Precision Defect Reporting</span>
+              <span class="m-chip"><i class="fas fa-check"></i> STLC &amp; SDLC Discipline</span>
+              <span class="m-chip"><i class="fas fa-check"></i> Continuous Skill Enhancement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS SECTION ===== -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">02 / Competencies</span>
+        </div>
+        <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+        <p class="section-subtitle">
+          Core testing capabilities, software development lifecycle processes, technical tools, and collaborative proficiencies.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-category-card">
+          <div class="skill-cat-header">
+            <div class="cat-icon-wrap"><i class="fas fa-vial-circle-check"></i></div>
+            <div>
+              <h3>Testing Skills</h3>
+              <p>Manual testing &amp; validation</p>
+            </div>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Manual Testing</span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Test Case Design &amp; Execution</span>
+                <span class="skill-pct">82%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Defect Reporting &amp; Triage</span>
+                <span class="skill-pct">82%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Functional &amp; Regression Testing</span>
+                <span class="skill-pct">78%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Smoke &amp; Sanity Testing</span>
+                <span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Boundary Value &amp; Equivalence Partitioning</span>
+                <span class="skill-pct">76%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="76"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <div class="skill-cat-header">
+            <div class="cat-icon-wrap"><i class="fas fa-sitemap"></i></div>
+            <div>
+              <h3>Processes &amp; Methodologies</h3>
+              <p>Lifecycles, frameworks &amp; triage</p>
+            </div>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">SDLC &amp; STLC Principles</span>
+                <span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Bug Lifecycle Management</span>
+                <span class="skill-pct">82%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Requirement Analysis &amp; Traceability</span>
+                <span class="skill-pct">75%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Agile &amp; Scrum Methodologies</span>
+                <span class="skill-pct">68%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="68"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Test Deliverables &amp; Summary Reporting</span>
+                <span class="skill-pct">78%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <div class="skill-cat-header">
+            <div class="cat-icon-wrap"><i class="fas fa-terminal"></i></div>
+            <div>
+              <h3>Technical &amp; Tools</h3>
+              <p>Databases, scripting &amp; docs</p>
+            </div>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">SQL (Queries &amp; DB Verification)</span>
+                <span class="skill-pct">70%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">MS Excel &amp; Google Sheets (Test Matrices)</span>
+                <span class="skill-pct">75%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Java Basics (OOP &amp; Logic)</span>
+                <span class="skill-pct">60%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="60"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Python Basics (Scripting &amp; Data)</span>
+                <span class="skill-pct">58%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="58"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">HTML5 &amp; CSS (DOM Element Inspection)</span>
+                <span class="skill-pct">65%</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="soft-skills-row">
+        <h3 class="soft-skills-title"><i class="fas fa-sparkles"></i> Professional &amp; Soft Skills</h3>
+        <div class="soft-skills-tags">
+          <div class="soft-tag"><i class="fas fa-eye"></i> High Attention to Detail</div>
+          <div class="soft-tag"><i class="fas fa-comments"></i> Technical Communication</div>
+          <div class="soft-tag"><i class="fas fa-brain"></i> Analytical Problem Solving</div>
+          <div class="soft-tag"><i class="fas fa-users-gear"></i> Team Collaboration</div>
+          <div class="soft-tag"><i class="fas fa-clock"></i> Time &amp; Sprint Management</div>
+          <div class="soft-tag"><i class="fas fa-rotate"></i> Adaptability &amp; Continuous Learning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS SECTION ===== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">03 / Applied Work</span>
+        </div>
+        <h2 class="section-title">Featured <span class="accent">Project</span></h2>
+        <p class="section-subtitle">
+          Real-world manual test engineering across key workflows of an e-commerce platform.
+        </p>
+      </div>
+
+      <div class="project-feature-card">
+        <div class="project-feature-left">
+          <div class="project-badge-row">
+            <span class="project-label">End-to-End QA Case Study</span>
+            <span class="project-status-tag"><i class="fas fa-check-circle"></i> Completed</span>
+          </div>
+          
+          <h3 class="project-title">
+            Manual Testing of the <br />
+            <span class="accent">BookCart E-Commerce</span> Platform
+          </h3>
+          
+          <p class="project-desc">
+            Executed an extensive manual testing cycle validating core workflows of the BookCart online bookstore. 
+            Formulated comprehensive test scenarios, designed over 50 structured test cases, validated positive and negative boundary inputs, 
+            and cataloged defects with full reproduction steps.
+          </p>
+
+          <div class="project-modules">
+            <h4><i class="fas fa-cubes"></i> Core Modules Tested</h4>
+            <div class="module-grid">
+              <div class="module-card">
+                <i class="fas fa-right-to-bracket"></i>
+                <div>
+                  <strong>User Login</strong>
+                  <span>Credentials, session, edge validations</span>
+                </div>
+              </div>
+              <div class="module-card">
+                <i class="fas fa-user-plus"></i>
+                <div>
+                  <strong>Registration</strong>
+                  <span>Form validations, duplicate checks</span>
+                </div>
+              </div>
+              <div class="module-card">
+                <i class="fas fa-magnifying-glass"></i>
+                <div>
+                  <strong>Book Search</strong>
+                  <span>Keyword query, category filter, blanks</span>
+                </div>
+              </div>
+              <div class="module-card">
+                <i class="fas fa-cart-shopping"></i>
+                <div>
+                  <strong>Shopping Cart</strong>
+                  <span>Add, delete, duplicate handling &amp; checkout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-tech-row">
+            <span class="tech-pill">Manual Testing</span>
+            <span class="tech-pill">Test Case Authoring</span>
+            <span class="tech-pill">Defect Reporting</span>
+            <span class="tech-pill">Functional Testing</span>
+            <span class="tech-pill">Regression Cycles</span>
+            <span class="tech-pill">Boundary Value Analysis</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="#testcases" class="btn-primary btn-sm">
+              <i class="fas fa-table-list"></i> View Test Cases Table
+            </a>
+            <a href="#bugreports" class="btn-secondary btn-sm">
+              <i class="fas fa-bug"></i> View Bug Reports
+            </a>
+          </div>
+        </div>
+
+        <div class="project-feature-right">
+          <div class="project-visual">
+            <div class="pv-card pv-top">
+              <div class="pv-icon"><i class="fas fa-cart-shopping"></i></div>
+              <div class="pv-info">
+                <span class="pv-name">BookCart Testing Suite</span>
+                <span class="pv-sub">E-Commerce Quality Assurance</span>
+              </div>
+            </div>
+
+            <div class="pv-stats">
+              <div class="pv-stat-card">
+                <span class="pv-num">4</span>
+                <span class="pv-lbl">Core Modules</span>
+              </div>
+              <div class="pv-stat-card highlight">
+                <span class="pv-num">50+</span>
+                <span class="pv-lbl">Test Cases</span>
+              </div>
+              <div class="pv-stat-card">
+                <span class="pv-num">10+</span>
+                <span class="pv-lbl">Bugs Logged</span>
+              </div>
+            </div>
+
+            <div class="pv-modules-preview">
+              <div class="pvm-item done">
+                <i class="fas fa-circle-check"></i>
+                <span>Authentication &amp; Security Validation</span>
+              </div>
+              <div class="pvm-item done">
+                <i class="fas fa-circle-check"></i>
+                <span>New Account Registration &amp; Duplicate Handling</span>
+              </div>
+              <div class="pvm-item done">
+                <i class="fas fa-circle-check"></i>
+                <span>Search Query &amp; Zero Results Flow</span>
+              </div>
+              <div class="pvm-item done">
+                <i class="fas fa-circle-check"></i>
+                <span>Cart Quantity Integrity &amp; Persistence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== TEST CASES SECTION ===== -->
+  <section id="testcases" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">04 / Test Documentation</span>
+        </div>
+        <h2 class="section-title">Sample <span class="accent">Test Cases</span></h2>
+        <p class="section-subtitle">
+          Structured test cases detailing conditions, step-by-step procedures, expected behavior, and verified execution outcomes.
+        </p>
+      </div>
+
+      <div class="tc-filter-bar">
+        <button class="tc-filter active" data-filter="all">All Modules</button>
+        <button class="tc-filter" data-filter="login">Login</button>
+        <button class="tc-filter" data-filter="register">Registration</button>
+        <button class="tc-filter" data-filter="search">Book Search</button>
+        <button class="tc-filter" data-filter="cart">Shopping Cart</button>
+      </div>
+
+      <div class="tc-table-wrapper">
+        <table class="tc-table" id="tcTable">
+          <thead>
+            <tr>
+              <th scope="col">TC ID</th>
+              <th scope="col">Module</th>
+              <th scope="col">Test Scenario</th>
+              <th scope="col">Test Steps</th>
+              <th scope="col">Expected Result</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-module="login">
+              <td class="tc-id">TC-LOG-01</td>
+              <td><span class="mod-badge mod-login">Login</span></td>
+              <td>Valid login with correct credentials</td>
+              <td>1. Navigate to login page<br/>2. Enter valid username &amp; password<br/>3. Click Login</td>
+              <td>User is redirected to homepage/dashboard</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="login">
+              <td class="tc-id">TC-LOG-02</td>
+              <td><span class="mod-badge mod-login">Login</span></td>
+              <td>Login with invalid password</td>
+              <td>1. Enter valid username<br/>2. Enter incorrect password<br/>3. Click Login</td>
+              <td>Error message: &quot;Invalid credentials&quot; displayed</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="login">
+              <td class="tc-id">TC-LOG-03</td>
+              <td><span class="mod-badge mod-login">Login</span></td>
+              <td>Login with empty fields</td>
+              <td>1. Leave username empty<br/>2. Leave password empty<br/>3. Click Login</td>
+              <td>Validation error shown for both fields</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="login">
+              <td class="tc-id">TC-LOG-04</td>
+              <td><span class="mod-badge mod-login">Login</span></td>
+              <td>Login with empty password only</td>
+              <td>1. Enter valid username<br/>2. Leave password empty<br/>3. Click Login</td>
+              <td>Validation error shown for password field</td>
+              <td><span class="status-fail"><i class="fas fa-xmark"></i> FAIL</span></td>
+            </tr>
+            <tr data-module="register">
+              <td class="tc-id">TC-REG-01</td>
+              <td><span class="mod-badge mod-register">Register</span></td>
+              <td>Successful registration with valid data</td>
+              <td>1. Navigate to registration page<br/>2. Fill all required fields<br/>3. Click Register</td>
+              <td>Account created; confirmation message shown</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="register">
+              <td class="tc-id">TC-REG-02</td>
+              <td><span class="mod-badge mod-register">Register</span></td>
+              <td>Registration with existing email</td>
+              <td>1. Enter an already registered email<br/>2. Fill other fields<br/>3. Click Register</td>
+              <td>Error: &quot;Email already in use&quot;</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="register">
+              <td class="tc-id">TC-REG-03</td>
+              <td><span class="mod-badge mod-register">Register</span></td>
+              <td>Password and confirm password mismatch</td>
+              <td>1. Enter password<br/>2. Enter different value in confirm password<br/>3. Click Register</td>
+              <td>Error: &quot;Passwords do not match&quot;</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="search">
+              <td class="tc-id">TC-SRC-01</td>
+              <td><span class="mod-badge mod-search">Search</span></td>
+              <td>Search with valid book title</td>
+              <td>1. Enter a valid book title in search bar<br/>2. Click Search/Press Enter</td>
+              <td>Relevant books are displayed in results</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="search">
+              <td class="tc-id">TC-SRC-02</td>
+              <td><span class="mod-badge mod-search">Search</span></td>
+              <td>Search with invalid/nonexistent book</td>
+              <td>1. Enter random/nonexistent book name<br/>2. Click Search</td>
+              <td>&quot;No results found&quot; message displayed</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="search">
+              <td class="tc-id">TC-SRC-03</td>
+              <td><span class="mod-badge mod-search">Search</span></td>
+              <td>Search with empty field</td>
+              <td>1. Leave search field blank<br/>2. Click Search</td>
+              <td>Validation message or all books shown</td>
+              <td><span class="status-fail"><i class="fas fa-xmark"></i> FAIL</span></td>
+            </tr>
+            <tr data-module="cart">
+              <td class="tc-id">TC-CART-01</td>
+              <td><span class="mod-badge mod-cart">Cart</span></td>
+              <td>Add a book to the shopping cart</td>
+              <td>1. Search and open a book detail page<br/>2. Click &quot;Add to Cart&quot;</td>
+              <td>Book is added; cart count increases by 1</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="cart">
+              <td class="tc-id">TC-CART-02</td>
+              <td><span class="mod-badge mod-cart">Cart</span></td>
+              <td>Remove a book from the cart</td>
+              <td>1. Open cart<br/>2. Click Remove on a book</td>
+              <td>Book removed; cart count decreases</td>
+              <td><span class="status-pass"><i class="fas fa-check"></i> PASS</span></td>
+            </tr>
+            <tr data-module="cart">
+              <td class="tc-id">TC-CART-03</td>
+              <td><span class="mod-badge mod-cart">Cart</span></td>
+              <td>Add same book multiple times</td>
+              <td>1. Add a book to cart<br/>2. Navigate back and add same book again</td>
+              <td>Cart quantity updates or duplicate shown</td>
+              <td><span class="status-fail"><i class="fas fa-xmark"></i> FAIL</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tc-summary-row">
+        <div class="tc-summary-card pass-card">
+          <i class="fas fa-circle-check"></i>
+          <span class="tcs-num">10</span>
+          <span class="tcs-lbl">Passed Tests</span>
+        </div>
+        <div class="tc-summary-card fail-card">
+          <i class="fas fa-circle-xmark"></i>
+          <span class="tcs-num">3</span>
+          <span class="tcs-lbl">Failed Tests (Logged)</span>
+        </div>
+        <div class="tc-summary-card total-card">
+          <i class="fas fa-list-check"></i>
+          <span class="tcs-num">13</span>
+          <span class="tcs-lbl">Documented Sample</span>
+        </div>
+      </div>
+
+      <div class="section-nav-footer">
+        <a href="#home" class="section-back-btn"><i class="fas fa-arrow-up"></i> Back to Top</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== BUG REPORTS SECTION ===== -->
+  <section id="bugreports" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">05 / Defect Tracking</span>
+        </div>
+        <h2 class="section-title">Bug <span class="accent">Reports</span></h2>
+        <p class="section-subtitle">
+          Formal defect reports demonstrating defect severity classification, step-by-step reproduction, and root cause analysis.
+        </p>
+      </div>
+
+      <div class="bug-cards-grid">
+
+        <div class="bug-card">
+          <div class="bug-card-header">
+            <span class="bug-id">BUG-001</span>
+            <span class="severity critical">Critical</span>
+            <span class="bug-status open"><i class="fas fa-circle-dot"></i> Open</span>
+          </div>
+          <h4 class="bug-title">Login with empty password field does not show validation error</h4>
+          <div class="bug-details">
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-cubes"></i> Module</span>
+              <span class="bd-value">User Login</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-list-ol"></i> Steps to Reproduce</span>
+              <span class="bd-value">1. Go to login page<br/>2. Enter valid username<br/>3. Leave password blank<br/>4. Click Login</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-eye"></i> Expected Result</span>
+              <span class="bd-value bd-expected">Validation error message displayed for password field</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-triangle-exclamation"></i> Actual Result</span>
+              <span class="bd-value bd-actual">No error shown; page reloads silently with form cleared</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-link"></i> TC Reference</span>
+              <span class="bd-value"><code>TC-LOG-04</code></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bug-card">
+          <div class="bug-card-header">
+            <span class="bug-id">BUG-002</span>
+            <span class="severity high">High</span>
+            <span class="bug-status open"><i class="fas fa-circle-dot"></i> Open</span>
+          </div>
+          <h4 class="bug-title">Search with empty field returns no results instead of showing all books</h4>
+          <div class="bug-details">
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-cubes"></i> Module</span>
+              <span class="bd-value">Book Search</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-list-ol"></i> Steps to Reproduce</span>
+              <span class="bd-value">1. Navigate to search bar<br/>2. Leave field empty<br/>3. Click Search button</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-eye"></i> Expected Result</span>
+              <span class="bd-value bd-expected">All catalog books are displayed, or an informative validation message appears</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-triangle-exclamation"></i> Actual Result</span>
+              <span class="bd-value bd-actual">&quot;No results found&quot; message appears — misleading end-user feedback</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-link"></i> TC Reference</span>
+              <span class="bd-value"><code>TC-SRC-03</code></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bug-card">
+          <div class="bug-card-header">
+            <span class="bug-id">BUG-003</span>
+            <span class="severity medium">Medium</span>
+            <span class="bug-status open"><i class="fas fa-circle-dot"></i> Open</span>
+          </div>
+          <h4 class="bug-title">Adding the same book to the cart multiple times creates duplicate entries</h4>
+          <div class="bug-details">
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-cubes"></i> Module</span>
+              <span class="bd-value">Shopping Cart</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-list-ol"></i> Steps to Reproduce</span>
+              <span class="bd-value">1. Add a book to cart<br/>2. Return to catalog listing<br/>3. Add the exact same book again<br/>4. View cart page</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-eye"></i> Expected Result</span>
+              <span class="bd-value bd-expected">Cart line item quantity increments to 2</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-triangle-exclamation"></i> Actual Result</span>
+              <span class="bd-value bd-actual">A duplicate line item is created for the identical item</span>
+            </div>
+            <div class="bug-detail-row">
+              <span class="bd-label"><i class="fas fa-link"></i> TC Reference</span>
+              <span class="bd-value"><code>TC-CART-03</code></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-nav-footer">
+        <a href="#home" class="section-back-btn"><i class="fas fa-arrow-up"></i> Back to Top</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATIONS SECTION ===== -->
+  <section id="certifications" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">06 / Credentials &amp; Honors</span>
+        </div>
+        <h2 class="section-title">Certifications &amp; <span class="accent">Credentials</span></h2>
+        <p class="section-subtitle">
+          Verified university academic honors, industry internships, value-added workshops, and technical credentials demonstrating hands-on QA, cloud, database, and programming proficiency.
+        </p>
+      </div>
+
+      <!-- ACADEMIC SPECIAL SHOWCASE: PROVISIONAL CERTIFICATE -->
+      <div class="academic-showcase-card" data-category="academic">
+        <div class="asc-glow"></div>
+        <div class="asc-content">
+          <div class="asc-badge-row">
+            <span class="asc-honors-badge"><i class="fas fa-award"></i> University Academic Honors</span>
+            <span class="asc-pass-badge"><i class="fas fa-check-double"></i> First Class with Distinction</span>
+            <span class="asc-date-badge"><i class="fas fa-calendar-check"></i> Passed: March 2026 | Issued: 08.04.2026</span>
+          </div>
+
+          <div class="asc-main-grid">
+            <div class="asc-left">
+              <div class="asc-icon-box">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="asc-titles">
+                <span class="asc-institution">Karpagam Academy of Higher Education</span>
+                <span class="asc-inst-sub">(Deemed to be University &bull; NAAC Accredited A+ Grade &bull; Coimbatore)</span>
+                <h3 class="asc-degree">Bachelor of Science in Computer Science</h3>
+                <h4 class="asc-spec"><span class="accent">Specialization:</span> Artificial Intelligence &amp; Data Science</h4>
+              </div>
+            </div>
+
+            <div class="asc-right">
+              <div class="asc-meta-grid">
+                <div class="asc-meta-item">
+                  <span class="ami-label">Register Number</span>
+                  <span class="ami-value">23ADU081</span>
+                </div>
+                <div class="asc-meta-item">
+                  <span class="ami-label">Folio Number</span>
+                  <span class="ami-value">3924</span>
+                </div>
+                <div class="asc-meta-item">
+                  <span class="ami-label">Part I Classification</span>
+                  <span class="ami-value">First Class</span>
+                </div>
+                <div class="asc-meta-item">
+                  <span class="ami-label">Part II Classification</span>
+                  <span class="ami-value">First Class</span>
+                </div>
+                <div class="asc-meta-item highlight">
+                  <span class="ami-label">Part III Classification</span>
+                  <span class="ami-value distinction">First Class with Distinction</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="asc-role-box">
+            <div class="asc-role-label">
+              <i class="fas fa-briefcase"></i>
+              <strong>Role &amp; Purpose for Software Testing / QA:</strong>
+            </div>
+            <p class="asc-role-desc">
+              Comprehensive university degree covering core Computer Science, Data Structures, Software Engineering, AI Algorithms, and Database Systems. Graduating with <strong>First Class with Distinction</strong> demonstrates disciplined technical rigor, high analytical capability, and a proven ability to grasp complex software architectures—critical assets for test planning, defect isolation, and quality assurance.
+            </p>
+          </div>
+
+          <div class="asc-cta-row">
+            <a href="certificates/provisional.pdf" target="_blank" class="btn-primary btn-sm">
+              <i class="fas fa-file-pdf"></i> View Provisional Certificate (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER CONTROLS -->
+      <div class="cert-filter-bar">
+        <button class="cert-filter active" data-filter="all">All Credentials (13)</button>
+        <button class="cert-filter" data-filter="internship">Internships (2)</button>
+        <button class="cert-filter" data-filter="workshop">Workshops (1)</button>
+        <button class="cert-filter" data-filter="cloud-agile">Cloud &amp; Agile (2)</button>
+        <button class="cert-filter" data-filter="tech-skills">Technical &amp; QA Skills (7)</button>
+        <button class="cert-filter" data-filter="academic">Academic Degree (1)</button>
+      </div>
+
+      <!-- CERTIFICATES GRID -->
+      <div class="cert-grid-v2" id="certGrid">
+
+        <!-- 1. INTERNSHIP: ALTITUDES -->
+        <div class="cert-card-v2" data-category="internship">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-internship"><i class="fas fa-building-user"></i> Industry Internship</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> Sep 2024 – Oct 2024</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-laptop-code"></i></div>
+              <div>
+                <span class="cc-issuer">Altitudes &bull; Coimbatore</span>
+                <h4 class="cc-title">Python with Artificial Intelligence</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-clock"></i> 02.09.2024 to 01.10.2024</span>
+              <span class="cc-meta-pill"><i class="fas fa-id-card"></i> Reg: 23ADU081</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Hands-on internship in Python programming and AI logic workflows. Gained practical experience in writing modular code, debugging algorithmic scripts, and verifying data handling—directly applicable to automated test scripting and defect root-cause analysis.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Issued: 01.10.2024</span>
+            <a href="certificates/internship%201.Pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. INTERNSHIP: SOCIOKART -->
+        <div class="cert-card-v2" data-category="internship">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-internship"><i class="fas fa-building-user"></i> Industry Internship</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> Jun 2025 – Jul 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-network-wired"></i></div>
+              <div>
+                <span class="cc-issuer">SocioKart IT Solution &bull; Gandhipuram</span>
+                <h4 class="cc-title">Python with Machine Learning</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-clock"></i> 30.06.2025 to 20.07.2025</span>
+              <span class="cc-meta-pill"><i class="fas fa-shield-alt"></i> NCSID: E20E57-2308247162438</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Executed machine learning data pipelines, data preprocessing, model testing, and application integration. Demonstrated strong technical skills, systematic test verification, and collaborative problem-solving in a real-world IT environment.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Issued: 20.07.2025</span>
+            <a href="certificates/internship%202.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. WORKSHOP: NEXT GEN DATA ANALYTICS -->
+        <div class="cert-card-v2" data-category="workshop">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-workshop"><i class="fas fa-tools"></i> Value-Added Workshop</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> August 2024</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-chart-pie"></i></div>
+              <div>
+                <span class="cc-issuer">Karpagam Academy &amp; J-Impact Creative Learning</span>
+                <h4 class="cc-title">Next Generation Data Analytics</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-hourglass-half"></i> 30 Hours Intensive</span>
+              <span class="cc-meta-pill"><i class="fas fa-calendar-check"></i> 21.08.2024 to 25.08.2024</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Intensive 30-hour specialized workshop on data analytics, trend evaluation, and data validation techniques. Crucial for QA roles involving high-volume data verification, analytics report testing, and data integrity assessment.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Certified: 18.12.2024</span>
+            <a href="certificates/workshop.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. AWS ACADEMY CLOUD FOUNDATIONS -->
+        <div class="cert-card-v2" data-category="cloud-agile">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-cloud"><i class="fab fa-aws"></i> Cloud Certification</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> November 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-cloud"></i></div>
+              <div>
+                <span class="cc-issuer">Amazon Web Services (AWS) Academy</span>
+                <h4 class="cc-title">AWS Academy Graduate — Cloud Foundations</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-clock"></i> 20 Hours Curriculum</span>
+              <span class="cc-meta-pill"><i class="fas fa-circle-check"></i> Credly Verified</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Certified knowledge in core AWS cloud services (Compute, Storage, Networking, Security, IAM). Equips QA engineers to perform testing in cloud-hosted environments, evaluate serverless architectures, and test cloud deployment pipelines.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <a href="https://www.credly.com/go/pPv3H2IG" target="_blank" class="cc-cert-id" title="Verify on Credly">
+              <i class="fas fa-award"></i> Credly Badge
+            </a>
+            <a href="certificates/AWS_Academy_Graduate%2010%20november.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. AGILE PROJECT MANAGEMENT (HP LIFE) -->
+        <div class="cert-card-v2" data-category="cloud-agile">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-agile"><i class="fas fa-sync-alt"></i> Agile &amp; QA Process</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> November 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-tasks"></i></div>
+              <div>
+                <span class="cc-issuer">HP LIFE &bull; HP Foundation</span>
+                <h4 class="cc-title">Agile Project Management</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-certificate"></i> Serial: 68a59e9a...2989</span>
+              <span class="cc-meta-pill"><i class="fas fa-check"></i> Scrum &amp; Kanban</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Mastery of Agile principles, Sprint planning, Minimum Viable Product (MVP), user stories, and Scrum/Kanban frameworks. Directly aligns with standard software testing lifecycles (STLC) within modern cross-functional Agile engineering teams.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Issued: 14.11.2025</span>
+            <a href="certificates/agile%20project.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. SWAYAM NPTEL DATABASE MANAGEMENT SYSTEM -->
+        <div class="cert-card-v2" data-category="tech-skills">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-nptel"><i class="fas fa-university"></i> National Certification</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> Jul – Oct 2024</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-database"></i></div>
+              <div>
+                <span class="cc-issuer">NPTEL - AICTE &bull; IIT Madras (Swayam)</span>
+                <h4 class="cc-title">Database Management System (DBMS)</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-graduation-cap"></i> 3-4 Credits Course</span>
+              <span class="cc-meta-pill"><i class="fas fa-id-badge"></i> Roll: NPTEL24CS01S158600239</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Rigorous study of Relational Database Design, SQL queries, ER modeling, Normalization, Transaction Management, and Concurrency. Indispensable for backend database testing, data integrity validation, and writing complex SQL verification queries.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Proctored Score: 46%</span>
+            <a href="certificates/swayam%20NPTEL.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 7. DIPLOMA IN COMPUTER APPLICATION (CSC) -->
+        <div class="cert-card-v2" data-category="tech-skills">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-diploma"><i class="fas fa-medal"></i> Diploma &bull; Grade A</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> Jan 2023 – Jul 2023</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-desktop"></i></div>
+              <div>
+                <span class="cc-issuer">CSC Computer Software College (ISO 9001:2015)</span>
+                <h4 class="cc-title">Diploma in Computer Application (DCA)</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-award"></i> Grade A (Excellent)</span>
+              <span class="cc-meta-pill"><i class="fas fa-hashtag"></i> Reg No: 4218</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Comprehensive 6-month diploma covering Python programming, MS Office (Word, Excel, PowerPoint), HTML, and web architecture. Provides foundational computing literacy, documentation proficiency, and basic scripting skills.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Issued: 08.07.2023</span>
+            <a href="certificates/csc%20.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 8. SIMPLILEARN: JAVASCRIPT FOR BEGINNERS -->
+        <div class="cert-card-v2" data-category="tech-skills">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-skillup"><i class="fab fa-js-square"></i> SkillUp by Simplilearn</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> 18th July 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fab fa-js"></i></div>
+              <div>
+                <span class="cc-issuer">Simplilearn SkillUp</span>
+                <h4 class="cc-title">JavaScript for Beginners</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-key"></i> Code: 8647914</span>
+              <span class="cc-meta-pill"><i class="fas fa-circle-check"></i> Completed</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Covers variables, functions, DOM traversal, event handling, and conditional logic. Vital for automated testing using JavaScript-based test automation frameworks such as Cypress, Playwright, and Selenium WebDriver with JS.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Code: 8647914</span>
+            <a href="certificates/18th%20july.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 9. SIMPLILEARN: INTRODUCTION TO MS EXCEL -->
+        <div class="cert-card-v2" data-category="tech-skills">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-skillup"><i class="fas fa-file-excel"></i> SkillUp by Simplilearn</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> 20th July 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-table"></i></div>
+              <div>
+                <span class="cc-issuer">Simplilearn SkillUp</span>
+                <h4 class="cc-title">Introduction to MS Excel</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-key"></i> Code: 8655268</span>
+              <span class="cc-meta-pill"><i class="fas fa-circle-check"></i> Completed</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Proficiency in spreadsheet formatting, formulas, filtering, and data organization. Directly utilized by QA Engineers for writing detailed test cases, maintaining Requirement Traceability Matrices (RTM), and compiling defect execution reports.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Code: 8655268</span>
+            <a href="certificates/20th%20july.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 10. SIMPLILEARN: COMPUTER NETWORKING -->
+        <div class="cert-card-v2" data-category="tech-skills">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-skillup"><i class="fas fa-network-wired"></i> SkillUp by Simplilearn</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> 18th July 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-server"></i></div>
+              <div>
+                <span class="cc-issuer">Simplilearn SkillUp</span>
+                <h4 class="cc-title">Introduction to Computer Networking</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-key"></i> Code: 8646390</span>
+              <span class="cc-meta-pill"><i class="fas fa-circle-check"></i> Completed</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Covers OSI model layers, TCP/IP, DNS, IP addressing, HTTP/HTTPS protocols, and firewalls. Essential for web application testing, client-server debugging, API endpoint testing, and verifying network security behavior.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Code: 8646390</span>
+            <a href="certificates/18th%20july%202.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 11. SIMPLILEARN: CLOUD COMPUTING -->
+        <div class="cert-card-v2" data-category="cloud-agile">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-skillup"><i class="fas fa-cloud"></i> SkillUp by Simplilearn</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> 18th July 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-cloud-arrow-up"></i></div>
+              <div>
+                <span class="cc-issuer">Simplilearn SkillUp</span>
+                <h4 class="cc-title">Introduction to Cloud Computing</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-key"></i> Code: 8645360</span>
+              <span class="cc-meta-pill"><i class="fas fa-circle-check"></i> Completed</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Introduction to cloud models (IaaS, PaaS, SaaS), cloud virtualization, and deployment strategies. Gives a solid foundation for QA testers verifying web applications hosted on modern distributed cloud infrastructures.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Code: 8645360</span>
+            <a href="certificates/18th%20july%201.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+        <!-- 12. SIMPLILEARN: FRONT END DEVELOPMENT -->
+        <div class="cert-card-v2" data-category="tech-skills">
+          <div class="cc-header">
+            <span class="cc-type-badge badge-skillup"><i class="fas fa-code"></i> SkillUp by Simplilearn</span>
+            <span class="cc-date"><i class="fas fa-calendar-alt"></i> 9th July 2025</span>
+          </div>
+          <div class="cc-body">
+            <div class="cc-issuer-row">
+              <div class="cc-icon-wrap"><i class="fas fa-laptop"></i></div>
+              <div>
+                <span class="cc-issuer">Simplilearn SkillUp</span>
+                <h4 class="cc-title">Introduction to Front End Development</h4>
+              </div>
+            </div>
+            <div class="cc-meta-row">
+              <span class="cc-meta-pill"><i class="fas fa-key"></i> Code: 8596606</span>
+              <span class="cc-meta-pill"><i class="fas fa-circle-check"></i> Completed</span>
+            </div>
+            <div class="cc-purpose">
+              <span class="cp-label"><i class="fas fa-bullseye"></i> Role &amp; Purpose:</span>
+              <p class="cp-text">
+                Fundamentals of HTML5 structure, CSS responsive styling, UI components, and DOM layout. Empowers QA Engineers to perform thorough UI testing, cross-browser responsiveness validation, and element locator identification for automation.
+              </p>
+            </div>
+          </div>
+          <div class="cc-footer">
+            <span class="cc-cert-id">Code: 8596606</span>
+            <a href="certificates/9th%20july.pdf" target="_blank" class="cc-view-btn">
+              <i class="fas fa-file-pdf"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cert-tip">
+        <i class="fas fa-lightbulb"></i>
+        <p><strong>Recruiter Verification:</strong> All 13 credentials across Academic Honors, Industry Internships, Workshops, and Technical Disciplines are directly verifiable via the embedded PDF links and official registration codes.</p>
+      </div>
+
+      <div class="section-nav-footer">
+        <a href="#home" class="section-back-btn"><i class="fas fa-arrow-up"></i> Back to Top</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== RESUME SECTION ===== -->
+  <section id="resume" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">07 / Curriculum Vitae</span>
+        </div>
+        <h2 class="section-title">My <span class="accent">Resume</span></h2>
+        <p class="section-subtitle">
+          Download or view my complete curriculum vitae with academic background, technical skills, and project experience.
+        </p>
+      </div>
+      
+      <div class="resume-area">
+        <div class="resume-card">
+          <div class="resume-icon-area">
+            <div class="resume-icon-ring">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+          </div>
+          <div class="resume-info">
+            <div class="resume-badge"><i class="fas fa-circle-check"></i> Verified PDF</div>
+            <h3>Jose Ashmitha V. — QA Resume</h3>
+            <p>Software Tester / QA Engineer &bull; B.Sc. AI &amp; Data Science (Distinction)</p>
+            <p class="resume-note">
+              <i class="fas fa-circle-info"></i>
+              Official resume available in standard PDF format for immediate download or in-browser viewing.
+            </p>
+            <div class="resume-cta-row">
+              <a href="resume.pdf" download class="btn-primary" id="downloadResume">
+                <i class="fas fa-download"></i> Download Resume (PDF)
+              </a>
+              <a href="resume.pdf" target="_blank" class="btn-secondary" id="viewResume">
+                <i class="fas fa-eye"></i> View in New Tab
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag-wrap">
+          <span class="section-tag">08 / Get in Touch</span>
+        </div>
+        <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
+        <p class="section-subtitle contact-sub">
+          I am actively seeking full-time Software Tester / QA Engineer opportunities. Let's discuss how I can contribute to your team's quality standards!
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-panel">
+          <h3>Reach Out Directly</h3>
+          <p>Whether you have a job opening, an internship opportunity, or a question about my testing projects, my inbox and phone are open.</p>
+
+          <div class="contact-items">
+            <a href="mailto:joseashmitha@gmail.com" class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-detail">
+                <span class="ci-label">Email Address</span>
+                <span class="ci-value">joseashmitha@gmail.com</span>
+              </div>
+            </a>
+            <a href="tel:+919585449809" class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div class="contact-detail">
+                <span class="ci-label">Phone / WhatsApp</span>
+                <span class="ci-value">+91 9585449809</span>
+              </div>
+            </a>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
+              <div class="contact-detail">
+                <span class="ci-label">Current Location</span>
+                <span class="ci-value">Coimbatore &bull; Chennai, Tamil Nadu, India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-block">
+            <span class="social-label">Professional Profiles:</span>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/jose-ashmitha-v-8aa824283" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn Profile" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/joseashmitha" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Profile" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="mailto:joseashmitha@gmail.com" class="social-btn" title="Send Direct Email" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-panel">
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name <span class="req">*</span></label>
+                <input type="text" id="name" placeholder="Recruiter / Engineering Manager" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email <span class="req">*</span></label>
+                <input type="email" id="email" placeholder="name@company.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject <span class="req">*</span></label>
+              <input type="text" id="subject" placeholder="QA Role Opportunity / Interview Invitation" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message <span class="req">*</span></label>
+              <textarea id="message" rows="5" placeholder="Share details about the position, tech stack, or inquiry..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="submitBtn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <p class="form-note">
+              <i class="fas fa-shield-halved"></i> 
+              Your information is secure and sent directly to Jose Ashmitha.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-logo">JA<span class="accent">.</span></div>
+        <p class="footer-tagline">Jose Ashmitha V. &bull; QA Engineer &amp; Software Tester</p>
+        <p class="footer-bio-sub">B.Sc. AI &amp; Data Science &bull; Karpagam Academy of Higher Education (Distinction)</p>
+      </div>
+
+      <div class="footer-nav-row">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#testcases">Test Cases</a>
+        <a href="#bugreports">Bug Reports</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Jose Ashmitha V. All rights reserved.</p>
+        <p class="built-with">Built with HTML5, CSS3 &amp; JavaScript &bull; Clean Code &bull; Tested for Quality</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING BACK TO TOP WITH SCROLL PROGRESS RING ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <circle class="progress-ring-bg" cx="23" cy="23" r="19"></circle>
+      <circle class="progress-ring-indicator" id="progressIndicator" cx="23" cy="23" r="19"></circle>
+    </svg>
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
