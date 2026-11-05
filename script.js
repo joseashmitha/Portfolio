@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('ja_portfolio_theme', theme);
 
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'light' ? '#f8fafc' : '#07111F');
+      metaThemeColor.setAttribute('content', theme === 'light' ? '#f8fafc' : '#050B18');
     }
 
     if (themeToggle) {
@@ -63,122 +63,316 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================
-     2. ANIMATED BACKGROUND CANVAS ENGINE (Lightweight & Smooth)
+     2. QA CONSTELLATION — Premium 3D Canvas Animation
+     Concept: A slowly rotating sphere of interconnected test nodes
+     with electric pulse beams, orbiting data rings, and drifting
+     stardust — representing precision QA intelligence.
+     Pure canvas 2D with 3D projection math (no external libs needed).
      ========================================================== */
   const canvas = document.getElementById('bgCanvas');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth <= 768;
 
-  if (canvas && !prefersReducedMotion) {
+  if (canvas) {
     const ctx = canvas.getContext('2d');
-    let animationFrameId = null;
-    let width = 0;
-    let height = 0;
+    let W = canvas.width  = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
     let isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
-    function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas, { passive: true });
+    window.updateCanvasTheme = (theme) => { isDark = theme !== 'light'; };
 
-    // Floating Ambient Light Nodes (Deep Navy & Electric Blue)
-    const nodes = [
-      { x: 0.2, y: 0.3, vx: 0.0003, vy: 0.0002, r: 240, colorDark: 'rgba(77, 163, 255, 0.12)', colorLight: 'rgba(2, 132, 199, 0.06)' },
-      { x: 0.8, y: 0.2, vx: -0.0002, vy: 0.0003, r: 280, colorDark: 'rgba(96, 165, 250, 0.10)', colorLight: 'rgba(99, 102, 241, 0.05)' },
-      { x: 0.5, y: 0.75, vx: 0.0002, vy: -0.0002, r: 260, colorDark: 'rgba(11, 27, 51, 0.22)', colorLight: 'rgba(37, 99, 235, 0.05)' }
+    window.addEventListener('resize', () => {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }, { passive: true });
+
+    /* ---- Mouse parallax ---- */
+    let mx = 0, my = 0;
+    if (!isMobile) {
+      window.addEventListener('mousemove', e => {
+        mx = (e.clientX / W - 0.5);
+        my = (e.clientY / H - 0.5);
+      }, { passive: true });
+    }
+
+    /* ---- 3D sphere node network ---- */
+    const NODE_COUNT = isMobile ? 28 : 55;
+    const SPHERE_R   = isMobile ? 160 : 230;
+    const CONN_DIST  = isMobile ? 110 : 160; // max distance to draw connection
+
+    // Distribute nodes on sphere surface using Fibonacci spiral
+    function fibonacciSphere(n) {
+      const pts = [];
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      for (let i = 0; i < n; i++) {
+        const y = 1 - (i / (n - 1)) * 2;
+        const r = Math.sqrt(1 - y * y);
+        const theta = golden * i;
+        pts.push({ x: Math.cos(theta) * r, y, z: Math.sin(theta) * r });
+      }
+      return pts;
+    }
+
+    const baseNodes = fibonacciSphere(NODE_COUNT);
+
+    /* ---- Orbiting ring data ---- */
+    const rings = [
+      { radius: SPHERE_R * 1.35, tiltX: 0.52, tiltZ: 0.0,  speed: 0.0007, dotCount: 3, dotOffset: 0 },
+      { radius: SPHERE_R * 1.60, tiltX: 1.1,  tiltZ: 0.4,  speed: -0.0005, dotCount: 2, dotOffset: 1.8 },
+      { radius: SPHERE_R * 1.85, tiltX: 0.2,  tiltZ: 0.9,  speed: 0.0004, dotCount: 2, dotOffset: 3.1 }
     ];
 
-    // Star-dust micro particles
-    const particleCount = 38;
-    const particles = [];
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random(),
-        y: Math.random(),
-        size: Math.random() * 1.6 + 0.6,
-        alpha: Math.random() * 0.4 + 0.1,
-        speedY: (Math.random() * 0.0002 + 0.00008),
-        pulseSpeed: Math.random() * 0.02 + 0.01,
-        pulseVal: Math.random() * Math.PI
+    /* ---- Pulse beams travelling along connections ---- */
+    const pulses = [];
+    for (let i = 0; i < 6; i++) {
+      pulses.push({ progress: Math.random(), speed: 0.004 + Math.random() * 0.003, a: 0, b: 0 });
+    }
+
+    /* ---- Stardust micro particles ---- */
+    const stars = [];
+    const STAR_COUNT = isMobile ? 30 : 65;
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random(), y: Math.random(),
+        size: Math.random() * 1.3 + 0.3,
+        alpha: Math.random() * 0.3 + 0.05,
+        vy: (Math.random() * 0.00015 + 0.00004),
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpd: Math.random() * 0.018 + 0.008
       });
     }
 
-    window.updateCanvasTheme = function(theme) {
-      isDark = theme !== 'light';
-    };
+    /* ---- Floating ambient glow blobs ---- */
+    const blobs = [
+      { px: 0.18, py: 0.28, vx: 0.00025, vy: 0.00015, r: 280, alpha: 0.09 },
+      { px: 0.82, py: 0.18, vx: -0.0002, vy: 0.0003,  r: 320, alpha: 0.07 },
+      { px: 0.50, py: 0.80, vx: 0.00018, vy: -0.00018,r: 290, alpha: 0.08 }
+    ];
 
-    let lastTime = performance.now();
+    /* ---- 3D rotation state ---- */
+    let rotX = 0.3, rotY = 0;
+    let targetRotX = 0.3, targetRotY = 0;
 
-    function render(time) {
-      const delta = Math.min(time - lastTime, 50);
-      lastTime = time;
+    /* ---- 3D → 2D projection ---- */
+    function project(x, y, z, cx, cy, fov) {
+      const scale = fov / (fov + z);
+      return { sx: cx + x * scale, sy: cy + y * scale, scale };
+    }
 
-      ctx.clearRect(0, 0, width, height);
+    function rotateXY(x, y, z, ax, ay) {
+      // Rotate around X axis
+      let y1 = y * Math.cos(ax) - z * Math.sin(ax);
+      let z1 = y * Math.sin(ax) + z * Math.cos(ax);
+      // Rotate around Y axis
+      let x2 = x * Math.cos(ay) + z1 * Math.sin(ay);
+      let z2 = -x * Math.sin(ay) + z1 * Math.cos(ay);
+      return { x: x2, y: y1, z: z2 };
+    }
 
-      // 1. Draw drifting ambient glow nodes
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.x += n.vx * (delta / 16);
-        n.y += n.vy * (delta / 16);
+    let time = 0;
+    let lastT = performance.now();
+    let rafId = null;
 
-        if (n.x < 0.05 || n.x > 0.95) n.vx *= -1;
-        if (n.y < 0.05 || n.y > 0.95) n.vy *= -1;
+    function render(now) {
+      rafId = requestAnimationFrame(render);
+      if (document.hidden) return;
 
-        const px = n.x * width;
-        const py = n.y * height;
-        const grad = ctx.createRadialGradient(px, py, 0, px, py, n.r);
-        const col = isDark ? n.colorDark : n.colorLight;
+      const dt = Math.min(now - lastT, 50);
+      lastT = now;
+      time += dt * 0.001;
 
-        grad.addColorStop(0, col);
-        grad.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.clearRect(0, 0, W, H);
 
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(px, py, n.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // 2. Draw subtle star-dust particles
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.y -= p.speedY * (delta / 16);
-        if (p.y < 0) {
-          p.y = 1;
-          p.x = Math.random();
+      /* -- Floating ambient glow blobs -- */
+      for (const b of blobs) {
+        b.px += b.vx * (dt / 16);
+        b.py += b.vy * (dt / 16);
+        if (b.px < 0.05 || b.px > 0.95) b.vx *= -1;
+        if (b.py < 0.05 || b.py > 0.95) b.vy *= -1;
+        const bx = b.px * W, by = b.py * H;
+        if (isDark) {
+          const g = ctx.createRadialGradient(bx, by, 0, bx, by, b.r);
+          g.addColorStop(0, `rgba(56,189,248,${b.alpha})`);
+          g.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(bx, by, b.r, 0, Math.PI * 2);
+          ctx.fill();
         }
+      }
 
-        p.pulseVal += p.pulseSpeed;
-        const currentAlpha = p.alpha + Math.sin(p.pulseVal) * 0.15;
-        const safeAlpha = Math.max(0.04, Math.min(0.7, currentAlpha));
-
-        const px = p.x * width;
-        const py = p.y * height;
-
-        ctx.fillStyle = isDark
-          ? `rgba(186, 230, 253, ${safeAlpha})`
-          : `rgba(2, 132, 199, ${safeAlpha * 0.7})`;
-
+      /* -- Stardust -- */
+      for (const s of stars) {
+        s.y -= s.vy * (dt / 16);
+        if (s.y < 0) { s.y = 1; s.x = Math.random(); }
+        s.pulse += s.pulseSpd;
+        const a = Math.max(0.02, Math.min(0.5, s.alpha + Math.sin(s.pulse) * 0.1));
+        ctx.fillStyle = isDark ? `rgba(186,230,253,${a})` : `rgba(2,132,199,${a * 0.5})`;
         ctx.beginPath();
-        ctx.arc(px, py, p.size, 0, Math.PI * 2);
+        ctx.arc(s.x * W, s.y * H, s.size, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      if (!document.hidden) {
-        animationFrameId = requestAnimationFrame(render);
+      if (prefersReducedMotion) return;
+
+      /* -- Update rotation with mouse parallax ease -- */
+      const autoRotY = time * 0.18;
+      targetRotX = 0.3 + my * 0.35;
+      targetRotY = autoRotY + mx * 0.5;
+      rotX += (targetRotX - rotX) * 0.03;
+      rotY += (targetRotY - rotY) * 0.03;
+
+      /* -- Centre of constellation (right-biased visually) -- */
+      const cx = W * (isMobile ? 0.5 : 0.72);
+      const cy = H * 0.52;
+      const FOV = 420;
+
+      /* -- Project all nodes -- */
+      const projected = baseNodes.map(n => {
+        const p = rotateXY(n.x * SPHERE_R, n.y * SPHERE_R, n.z * SPHERE_R, rotX, rotY);
+        return project(p.x, p.y, p.z, cx, cy, FOV);
+      });
+
+      /* -- Draw connections (back nodes first for depth) -- */
+      const sorted = projected.map((p, i) => ({ p, i }))
+        .sort((a, b) => a.p.scale - b.p.scale);
+
+      // Build connection pairs (each node connects to nearest few)
+      const connPairs = [];
+      for (let i = 0; i < baseNodes.length; i++) {
+        const pi = projected[i];
+        for (let j = i + 1; j < baseNodes.length; j++) {
+          const pj = projected[j];
+          const dx = pi.sx - pj.sx, dy = pi.sy - pj.sy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONN_DIST) connPairs.push({ i, j, dist });
+        }
+      }
+
+      // Draw connection lines
+      for (const { i, j, dist } of connPairs) {
+        const pi = projected[i], pj = projected[j];
+        const alpha = isDark
+          ? (1 - dist / CONN_DIST) * 0.22 * Math.min(pi.scale, pj.scale) * 1.6
+          : (1 - dist / CONN_DIST) * 0.08;
+        if (alpha < 0.01) continue;
+        ctx.beginPath();
+        ctx.moveTo(pi.sx, pi.sy);
+        ctx.lineTo(pj.sx, pj.sy);
+        ctx.strokeStyle = isDark ? `rgba(56,189,248,${alpha.toFixed(3)})` : `rgba(2,132,199,${alpha.toFixed(3)})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+
+      /* -- Pulse beams travelling along connections -- */
+      if (connPairs.length > 4) {
+        for (const pulse of pulses) {
+          pulse.progress += pulse.speed * (dt / 16);
+          if (pulse.progress >= 1) {
+            pulse.progress = 0;
+            // Pick a random connection pair
+            const idx = Math.floor(Math.random() * connPairs.length);
+            pulse.a = connPairs[idx].i;
+            pulse.b = connPairs[idx].j;
+          }
+          const pa = projected[pulse.a], pb = projected[pulse.b];
+          if (!pa || !pb) continue;
+          const t2 = pulse.progress;
+          const px = pa.sx + (pb.sx - pa.sx) * t2;
+          const py = pa.sy + (pb.sy - pa.sy) * t2;
+          const pulseAlpha = isDark ? 0.9 : 0.5;
+          const pg = ctx.createRadialGradient(px, py, 0, px, py, 7);
+          pg.addColorStop(0, `rgba(103,232,249,${pulseAlpha})`);
+          pg.addColorStop(0.4, `rgba(56,189,248,${pulseAlpha * 0.4})`);
+          pg.addColorStop(1, 'rgba(56,189,248,0)');
+          ctx.fillStyle = pg;
+          ctx.beginPath();
+          ctx.arc(px, py, 7, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      /* -- Draw sphere nodes (sorted back to front) -- */
+      for (const { p, i } of sorted) {
+        const brightness = 0.3 + p.scale * 0.7;
+        const radius = Math.max(1.5, p.scale * (isMobile ? 3.5 : 4.5));
+        // Node glow
+        if (isDark) {
+          const ng = ctx.createRadialGradient(p.sx, p.sy, 0, p.sx, p.sy, radius * 2.8);
+          ng.addColorStop(0, `rgba(56,189,248,${brightness * 0.55})`);
+          ng.addColorStop(1, 'rgba(56,189,248,0)');
+          ctx.fillStyle = ng;
+          ctx.beginPath();
+          ctx.arc(p.sx, p.sy, radius * 2.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        // Node dot
+        ctx.beginPath();
+        ctx.arc(p.sx, p.sy, radius, 0, Math.PI * 2);
+        ctx.fillStyle = isDark
+          ? `rgba(103,232,249,${brightness * 0.95})`
+          : `rgba(2,132,199,${brightness * 0.6})`;
+        ctx.fill();
+      }
+
+      /* -- Orbiting data rings -- */
+      for (const ring of rings) {
+        ring.dotOffset += ring.speed * (dt / 16);
+        const steps = 90;
+        ctx.beginPath();
+        for (let k = 0; k <= steps; k++) {
+          const angle = (k / steps) * Math.PI * 2;
+          const rx = Math.cos(angle) * ring.radius;
+          const ry = Math.sin(angle) * ring.radius * Math.cos(ring.tiltX);
+          const rz = Math.sin(angle) * ring.radius * Math.sin(ring.tiltX);
+          // apply tiltZ
+          const finalX = rx * Math.cos(ring.tiltZ) - rz * Math.sin(ring.tiltZ);
+          const finalZ = rx * Math.sin(ring.tiltZ) + rz * Math.cos(ring.tiltZ);
+          // apply scene rotation Y
+          const fx = finalX * Math.cos(rotY) + finalZ * Math.sin(rotY);
+          const fz = -finalX * Math.sin(rotY) + finalZ * Math.cos(rotY);
+          const proj = project(fx, ry, fz, cx, cy, FOV);
+          if (k === 0) ctx.moveTo(proj.sx, proj.sy);
+          else ctx.lineTo(proj.sx, proj.sy);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = isDark ? 'rgba(56,189,248,0.14)' : 'rgba(2,132,199,0.06)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Orbiting glowing dots on the ring
+        for (let d = 0; d < ring.dotCount; d++) {
+          const dAngle = ring.dotOffset + (d / ring.dotCount) * Math.PI * 2;
+          const drx = Math.cos(dAngle) * ring.radius;
+          const dry = Math.sin(dAngle) * ring.radius * Math.cos(ring.tiltX);
+          const drz = Math.sin(dAngle) * ring.radius * Math.sin(ring.tiltX);
+          const dfx = drx * Math.cos(ring.tiltZ) - drz * Math.sin(ring.tiltZ);
+          const dfz = drx * Math.sin(ring.tiltZ) + drz * Math.cos(ring.tiltZ);
+          const dfx2 = dfx * Math.cos(rotY) + dfz * Math.sin(rotY);
+          const dfz2 = -dfx * Math.sin(rotY) + dfz * Math.cos(rotY);
+          const dp = project(dfx2, dry, dfz2, cx, cy, FOV);
+          const dg = ctx.createRadialGradient(dp.sx, dp.sy, 0, dp.sx, dp.sy, 10);
+          dg.addColorStop(0, isDark ? 'rgba(103,232,249,0.9)' : 'rgba(2,132,199,0.7)');
+          dg.addColorStop(1, 'rgba(56,189,248,0)');
+          ctx.fillStyle = dg;
+          ctx.beginPath();
+          ctx.arc(dp.sx, dp.sy, 10, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(dp.sx, dp.sy, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = isDark ? 'rgba(255,255,255,0.95)' : 'rgba(2,132,199,0.9)';
+          ctx.fill();
+        }
       }
     }
 
-    // Start loop
-    animationFrameId = requestAnimationFrame(render);
+    rafId = requestAnimationFrame(render);
 
-    // Pause when tab is not active to save battery/CPU
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       } else {
-        lastTime = performance.now();
-        animationFrameId = requestAnimationFrame(render);
+        if (!rafId) { lastT = performance.now(); rafId = requestAnimationFrame(render); }
       }
     });
   }
@@ -534,6 +728,28 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     // Fallback for older browsers
     document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }
+
+  /* ==========================================================
+     8b. TILT CARD 3D HOVER EFFECT
+     ========================================================== */
+  if (!prefersReducedMotion && !('ontouchstart' in window)) {
+    document.querySelectorAll('.service-card-v2, .cert-card-v2, .project-feature-card, .stat-box-v2').forEach(card => {
+      card.classList.add('tilt-card');
+
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const tiltX = -(y * 8).toFixed(2);
+        const tiltY  = (x * 8).toFixed(2);
+        card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
   }
 
   /* ==========================================================

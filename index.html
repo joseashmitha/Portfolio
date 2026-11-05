@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jose Ashmitha V. | QA Engineer &amp; Software Tester Portfolio</title>
   <meta name="description" content="Professional portfolio of Jose Ashmitha V. — Aspiring Software Tester / QA Engineer specializing in manual testing, test case design, defect reporting, and STLC methodologies." />
-  <meta name="theme-color" content="#07111F" />
+  <meta name="theme-color" content="#050B18" />
 
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ===== ANIMATED BACKGROUND CANVAS ===== -->
+  <!-- ===== ANIMATED BACKGROUND CANVAS (QA Constellation 3D) ===== -->
   <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
 
   <!-- ===== NAVIGATION ===== -->
@@ -64,17 +64,21 @@
   <!-- ===== HOME / HERO SECTION ===== -->
   <section id="home" class="hero-section">
     <div class="hero-ambient-glow"></div>
+
+    <!-- Hero constellation spotlight ring (behind photo) -->
+    <div class="hero-constellation-ring" aria-hidden="true"></div>
+
     <div class="container hero-container">
 
       <div class="hero-content">
-        <div class="hero-badge">
+        <div class="hero-badge hero-reveal-0">
           <span class="pulse-dot"></span>
           <span>Open to Opportunities &bull; QA Ready</span>
         </div>
-        <p class="hero-greeting">Hi, I'm</p>
-        <h1 class="hero-name">Jose Ashmitha <span class="name-accent">V.</span></h1>
+        <p class="hero-greeting hero-reveal-1">Hi, I'm</p>
+        <h1 class="hero-name hero-reveal-1">Jose Ashmitha <span class="name-accent">V.</span></h1>
         
-        <div class="hero-role">
+        <div class="hero-role hero-reveal-2">
           <span class="role-prefix">Aspiring</span>
           <span class="role-type-wrapper">
             <span class="role-typed" id="typedRole">Software Tester</span>
@@ -82,13 +86,13 @@
           </span>
         </div>
 
-        <p class="hero-intro">
+        <p class="hero-intro hero-reveal-3">
           I enjoy exploring applications from a user's perspective, identifying potential defects, and documenting clear, reproducible test cases. A dedicated <strong>B.Sc. Computer Science (AI &amp; Data Science)</strong> graduate from 
           <strong>Karpagam Academy of Higher Education</strong> (First Class with Distinction). 
           Passionate about quality assurance, systematic manual testing, requirement analysis, and clear defect reporting that empowers development teams to deliver rock-solid software.
         </p>
 
-        <div class="hero-cta-row">
+        <div class="hero-cta-row hero-reveal-4">
           <a href="#projects" class="btn-primary" id="heroBtnProjects">
             <i class="fas fa-layer-group"></i> Explore My Projects
           </a>
@@ -100,7 +104,7 @@
           </a>
         </div>
 
-        <div class="hero-social-row">
+        <div class="hero-social-row hero-reveal-5">
           <a href="https://www.linkedin.com/in/jose-ashmitha-v-8aa824283" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="LinkedIn Profile" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
           </a>
@@ -135,10 +139,13 @@
         </div>
       </div>
 
-      <div class="hero-visual-area">
+      <div class="hero-visual-area hero-reveal-photo">
+        <!-- Outer premium frame with animated border -->
         <div class="photo-frame-outer">
-          <!-- Soft electric-blue glow aura behind the portrait photo -->
+          <!-- Multi-layer glow aura -->
           <div class="photo-frame-glow" aria-hidden="true"></div>
+          <div class="photo-orbit-ring photo-orbit-ring-1" aria-hidden="true"></div>
+          <div class="photo-orbit-ring photo-orbit-ring-2" aria-hidden="true"></div>
 
           <div class="photo-frame">
             <img
@@ -147,6 +154,17 @@
               class="hero-portrait-img"
               loading="eager"
             />
+          </div>
+
+          <!-- Floating skill tags -->
+          <div class="hero-float-tag hero-float-tag-1" aria-hidden="true">
+            <i class="fas fa-bug"></i> Bug Tracking
+          </div>
+          <div class="hero-float-tag hero-float-tag-2" aria-hidden="true">
+            <i class="fas fa-check-circle"></i> Test Cases
+          </div>
+          <div class="hero-float-tag hero-float-tag-3" aria-hidden="true">
+            <i class="fas fa-shield-halved"></i> QA Ready
           </div>
 
           <!-- Verified Badges -->
