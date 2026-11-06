@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================
-     2. QA CONSTELLATION — Premium 3D Canvas Animation
-     Concept: A slowly rotating sphere of interconnected test nodes
-     with electric pulse beams, orbiting data rings, and drifting
-     stardust — representing precision QA intelligence.
-     Pure canvas 2D with 3D projection math (no external libs needed).
+     2. QUANTUM NEURAL FIELD — Grand Full-Width Premium Animation
+     Concept: A living neural storm that spans the entire viewport.
+     Layers: deep glow blobs → animated grid → 180 drifting nodes
+     → neural connections → cascading ripple waves → meteor streams
+     → mouse repulsion field. Full horizontal coverage. 60fps canvas.
      ========================================================== */
   const canvas = document.getElementById('bgCanvas');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -79,99 +79,153 @@ document.addEventListener('DOMContentLoaded', () => {
     let H = canvas.height = window.innerHeight;
     let isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
-    window.updateCanvasTheme = (theme) => { isDark = theme !== 'light'; };
+    window.updateCanvasTheme = t => { isDark = t !== 'light'; };
 
     window.addEventListener('resize', () => {
       W = canvas.width  = window.innerWidth;
       H = canvas.height = window.innerHeight;
+      buildParticles();
     }, { passive: true });
 
-    /* ---- Mouse parallax ---- */
-    let mx = 0, my = 0;
+    /* ================================================================
+       MOUSE FIELD
+    ================================================================ */
+    let mouseX = W * 0.5, mouseY = H * 0.5;
+    const MOUSE_RADIUS = 130;
     if (!isMobile) {
       window.addEventListener('mousemove', e => {
-        mx = (e.clientX / W - 0.5);
-        my = (e.clientY / H - 0.5);
+        mouseX = e.clientX;
+        mouseY = e.clientY;
       }, { passive: true });
     }
 
-    /* ---- 3D sphere node network ---- */
-    const NODE_COUNT = isMobile ? 28 : 55;
-    const SPHERE_R   = isMobile ? 160 : 230;
-    const CONN_DIST  = isMobile ? 110 : 160; // max distance to draw connection
+    /* ================================================================
+       PARTICLES — full-width scatter
+    ================================================================ */
+    const PARTICLE_COUNT = isMobile ? 70 : 180;
+    const CONNECT_DIST   = isMobile ? 120 : 170;
+    let particles = [];
 
-    // Distribute nodes on sphere surface using Fibonacci spiral
-    function fibonacciSphere(n) {
-      const pts = [];
-      const golden = Math.PI * (3 - Math.sqrt(5));
-      for (let i = 0; i < n; i++) {
-        const y = 1 - (i / (n - 1)) * 2;
-        const r = Math.sqrt(1 - y * y);
-        const theta = golden * i;
-        pts.push({ x: Math.cos(theta) * r, y, z: Math.sin(theta) * r });
+    function buildParticles() {
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x:  Math.random() * W,
+          y:  Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.38,
+          vy: (Math.random() - 0.5) * 0.28,
+          r:  Math.random() * 2.0 + 0.8,
+          alpha: Math.random() * 0.5 + 0.3,
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpd: 0.012 + Math.random() * 0.016,
+          // Some particles are "hotspot" (brighter, bigger)
+          hot: Math.random() < 0.08
+        });
       }
-      return pts;
     }
+    buildParticles();
 
-    const baseNodes = fibonacciSphere(NODE_COUNT);
+    /* ================================================================
+       RIPPLE WAVES — cascading expanding rings across full width
+    ================================================================ */
+    const MAX_RIPPLES = 7;
+    const ripples = [];
 
-    /* ---- Orbiting ring data ---- */
-    const rings = [
-      { radius: SPHERE_R * 1.35, tiltX: 0.52, tiltZ: 0.0,  speed: 0.0007, dotCount: 3, dotOffset: 0 },
-      { radius: SPHERE_R * 1.60, tiltX: 1.1,  tiltZ: 0.4,  speed: -0.0005, dotCount: 2, dotOffset: 1.8 },
-      { radius: SPHERE_R * 1.85, tiltX: 0.2,  tiltZ: 0.9,  speed: 0.0004, dotCount: 2, dotOffset: 3.1 }
-    ];
-
-    /* ---- Pulse beams travelling along connections ---- */
-    const pulses = [];
-    for (let i = 0; i < 6; i++) {
-      pulses.push({ progress: Math.random(), speed: 0.004 + Math.random() * 0.003, a: 0, b: 0 });
-    }
-
-    /* ---- Stardust micro particles ---- */
-    const stars = [];
-    const STAR_COUNT = isMobile ? 30 : 65;
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: Math.random(), y: Math.random(),
-        size: Math.random() * 1.3 + 0.3,
-        alpha: Math.random() * 0.3 + 0.05,
-        vy: (Math.random() * 0.00015 + 0.00004),
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpd: Math.random() * 0.018 + 0.008
+    function spawnRipple() {
+      ripples.push({
+        x:       Math.random() * W,
+        y:       Math.random() * H * 0.85 + H * 0.07,
+        radius:  0,
+        maxR:    Math.random() * 260 + 180,
+        alpha:   0.55,
+        speed:   Math.random() * 1.1 + 0.9,
+        color:   Math.random() < 0.6 ? '56,189,248' : '103,232,249'
       });
     }
 
-    /* ---- Floating ambient glow blobs ---- */
+    // Prime with staggered initial ripples
+    for (let i = 0; i < 4; i++) {
+      spawnRipple();
+      ripples[i].radius = (ripples[i].maxR / 4) * i;
+    }
+
+    /* ================================================================
+       METEOR STREAMS — bright lines shooting across the screen
+    ================================================================ */
+    const MAX_METEORS = isMobile ? 2 : 5;
+    const meteors = [];
+
+    function spawnMeteor() {
+      const startY = Math.random() * H * 0.7 + H * 0.05;
+      const length = Math.random() * 180 + 120;
+      meteors.push({
+        x:    -length,
+        y:    startY,
+        len:  length,
+        vx:   Math.random() * 5 + 4,
+        vy:   Math.random() * 1.2 - 0.6,
+        alpha: Math.random() * 0.5 + 0.4,
+        color: Math.random() < 0.5 ? '103,232,249' : '56,189,248'
+      });
+    }
+
+    for (let i = 0; i < 2; i++) {
+      spawnMeteor();
+      meteors[i].x = Math.random() * W;
+    }
+
+    /* ================================================================
+       LARGE AMBIENT GLOW BLOBS — full width coverage (5 blobs)
+    ================================================================ */
     const blobs = [
-      { px: 0.18, py: 0.28, vx: 0.00025, vy: 0.00015, r: 280, alpha: 0.09 },
-      { px: 0.82, py: 0.18, vx: -0.0002, vy: 0.0003,  r: 320, alpha: 0.07 },
-      { px: 0.50, py: 0.80, vx: 0.00018, vy: -0.00018,r: 290, alpha: 0.08 }
+      { px: 0.08, py: 0.35, vx: 0.00018, vy: 0.00012, r: 320, a: 0.08 },
+      { px: 0.30, py: 0.65, vx: -0.00015,vy: 0.00018, r: 380, a: 0.07 },
+      { px: 0.55, py: 0.25, vx: 0.00020, vy:-0.00014, r: 350, a: 0.07 },
+      { px: 0.78, py: 0.70, vx:-0.00018, vy: 0.00010, r: 300, a: 0.08 },
+      { px: 0.95, py: 0.40, vx: 0.00012, vy: 0.00022, r: 280, a: 0.06 }
     ];
 
-    /* ---- 3D rotation state ---- */
-    let rotX = 0.3, rotY = 0;
-    let targetRotX = 0.3, targetRotY = 0;
+    /* ================================================================
+       GRID — subtle animated perspective grid lines (full width)
+    ================================================================ */
+    function drawGrid(t) {
+      if (!isDark) return;
+      ctx.save();
+      ctx.globalAlpha = 0.028;
+      ctx.strokeStyle = '#38BDF8';
+      ctx.lineWidth = 0.6;
 
-    /* ---- 3D → 2D projection ---- */
-    function project(x, y, z, cx, cy, fov) {
-      const scale = fov / (fov + z);
-      return { sx: cx + x * scale, sy: cy + y * scale, scale };
+      // Horizontal lines (gently wave)
+      const hStep = 55;
+      for (let y2 = 0; y2 < H + hStep; y2 += hStep) {
+        const wave = Math.sin(t * 0.3 + y2 * 0.008) * 4;
+        ctx.beginPath();
+        ctx.moveTo(0, y2 + wave);
+        ctx.lineTo(W, y2 + wave);
+        ctx.stroke();
+      }
+
+      // Vertical lines (gently wave)
+      const vStep = 70;
+      for (let x2 = 0; x2 < W + vStep; x2 += vStep) {
+        const wave = Math.sin(t * 0.25 + x2 * 0.006) * 3;
+        ctx.beginPath();
+        ctx.moveTo(x2 + wave, 0);
+        ctx.lineTo(x2 + wave, H);
+        ctx.stroke();
+      }
+
+      ctx.restore();
     }
 
-    function rotateXY(x, y, z, ax, ay) {
-      // Rotate around X axis
-      let y1 = y * Math.cos(ax) - z * Math.sin(ax);
-      let z1 = y * Math.sin(ax) + z * Math.cos(ax);
-      // Rotate around Y axis
-      let x2 = x * Math.cos(ay) + z1 * Math.sin(ay);
-      let z2 = -x * Math.sin(ay) + z1 * Math.cos(ay);
-      return { x: x2, y: y1, z: z2 };
-    }
-
+    /* ================================================================
+       RENDER LOOP
+    ================================================================ */
     let time = 0;
     let lastT = performance.now();
     let rafId = null;
+    let rippleTimer = 0;
+    let meteorTimer  = 0;
 
     function render(now) {
       rafId = requestAnimationFrame(render);
@@ -183,17 +237,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.clearRect(0, 0, W, H);
 
-      /* -- Floating ambient glow blobs -- */
+      /* ---- LAYER 1: Deep background fill ---- */
+      ctx.fillStyle = isDark ? '#030C1A' : '#f1f5f9';
+      ctx.fillRect(0, 0, W, H);
+
+      /* ---- LAYER 2: Ambient glow blobs (full width) ---- */
       for (const b of blobs) {
         b.px += b.vx * (dt / 16);
         b.py += b.vy * (dt / 16);
-        if (b.px < 0.05 || b.px > 0.95) b.vx *= -1;
+        if (b.px < 0.02 || b.px > 0.98) b.vx *= -1;
         if (b.py < 0.05 || b.py > 0.95) b.vy *= -1;
         const bx = b.px * W, by = b.py * H;
         if (isDark) {
           const g = ctx.createRadialGradient(bx, by, 0, bx, by, b.r);
-          g.addColorStop(0, `rgba(56,189,248,${b.alpha})`);
-          g.addColorStop(1, 'rgba(0,0,0,0)');
+          g.addColorStop(0, `rgba(56,189,248,${b.a})`);
+          g.addColorStop(0.5, `rgba(30,120,200,${b.a * 0.4})`);
+          g.addColorStop(1, 'rgba(3,12,26,0)');
           ctx.fillStyle = g;
           ctx.beginPath();
           ctx.arc(bx, by, b.r, 0, Math.PI * 2);
@@ -201,166 +260,178 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      /* -- Stardust -- */
-      for (const s of stars) {
-        s.y -= s.vy * (dt / 16);
-        if (s.y < 0) { s.y = 1; s.x = Math.random(); }
-        s.pulse += s.pulseSpd;
-        const a = Math.max(0.02, Math.min(0.5, s.alpha + Math.sin(s.pulse) * 0.1));
-        ctx.fillStyle = isDark ? `rgba(186,230,253,${a})` : `rgba(2,132,199,${a * 0.5})`;
-        ctx.beginPath();
-        ctx.arc(s.x * W, s.y * H, s.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      /* ---- LAYER 3: Animated grid ---- */
+      drawGrid(time);
 
-      if (prefersReducedMotion) return;
-
-      /* -- Update rotation with mouse parallax ease -- */
-      const autoRotY = time * 0.18;
-      targetRotX = 0.3 + my * 0.35;
-      targetRotY = autoRotY + mx * 0.5;
-      rotX += (targetRotX - rotX) * 0.03;
-      rotY += (targetRotY - rotY) * 0.03;
-
-      /* -- Centre of constellation (right-biased visually) -- */
-      const cx = W * (isMobile ? 0.5 : 0.72);
-      const cy = H * 0.52;
-      const FOV = 420;
-
-      /* -- Project all nodes -- */
-      const projected = baseNodes.map(n => {
-        const p = rotateXY(n.x * SPHERE_R, n.y * SPHERE_R, n.z * SPHERE_R, rotX, rotY);
-        return project(p.x, p.y, p.z, cx, cy, FOV);
-      });
-
-      /* -- Draw connections (back nodes first for depth) -- */
-      const sorted = projected.map((p, i) => ({ p, i }))
-        .sort((a, b) => a.p.scale - b.p.scale);
-
-      // Build connection pairs (each node connects to nearest few)
-      const connPairs = [];
-      for (let i = 0; i < baseNodes.length; i++) {
-        const pi = projected[i];
-        for (let j = i + 1; j < baseNodes.length; j++) {
-          const pj = projected[j];
-          const dx = pi.sx - pj.sx, dy = pi.sy - pj.sy;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONN_DIST) connPairs.push({ i, j, dist });
-        }
-      }
-
-      // Draw connection lines
-      for (const { i, j, dist } of connPairs) {
-        const pi = projected[i], pj = projected[j];
-        const alpha = isDark
-          ? (1 - dist / CONN_DIST) * 0.22 * Math.min(pi.scale, pj.scale) * 1.6
-          : (1 - dist / CONN_DIST) * 0.08;
-        if (alpha < 0.01) continue;
-        ctx.beginPath();
-        ctx.moveTo(pi.sx, pi.sy);
-        ctx.lineTo(pj.sx, pj.sy);
-        ctx.strokeStyle = isDark ? `rgba(56,189,248,${alpha.toFixed(3)})` : `rgba(2,132,199,${alpha.toFixed(3)})`;
-        ctx.lineWidth = 0.6;
-        ctx.stroke();
-      }
-
-      /* -- Pulse beams travelling along connections -- */
-      if (connPairs.length > 4) {
-        for (const pulse of pulses) {
-          pulse.progress += pulse.speed * (dt / 16);
-          if (pulse.progress >= 1) {
-            pulse.progress = 0;
-            // Pick a random connection pair
-            const idx = Math.floor(Math.random() * connPairs.length);
-            pulse.a = connPairs[idx].i;
-            pulse.b = connPairs[idx].j;
+      /* ---- LAYER 4: Update & draw particles ---- */
+      if (!prefersReducedMotion) {
+        for (const p of particles) {
+          // Mouse repulsion
+          if (!isMobile) {
+            const dx = p.x - mouseX, dy = p.y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < MOUSE_RADIUS && dist > 0) {
+              const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.6;
+              p.vx += (dx / dist) * force;
+              p.vy += (dy / dist) * force;
+            }
           }
-          const pa = projected[pulse.a], pb = projected[pulse.b];
-          if (!pa || !pb) continue;
-          const t2 = pulse.progress;
-          const px = pa.sx + (pb.sx - pa.sx) * t2;
-          const py = pa.sy + (pb.sy - pa.sy) * t2;
-          const pulseAlpha = isDark ? 0.9 : 0.5;
-          const pg = ctx.createRadialGradient(px, py, 0, px, py, 7);
-          pg.addColorStop(0, `rgba(103,232,249,${pulseAlpha})`);
-          pg.addColorStop(0.4, `rgba(56,189,248,${pulseAlpha * 0.4})`);
-          pg.addColorStop(1, 'rgba(56,189,248,0)');
-          ctx.fillStyle = pg;
-          ctx.beginPath();
-          ctx.arc(px, py, 7, 0, Math.PI * 2);
-          ctx.fill();
+
+          // Damping
+          p.vx *= 0.985;
+          p.vy *= 0.985;
+
+          // Base drift speed restore
+          if (Math.abs(p.vx) < 0.05) p.vx += (Math.random() - 0.5) * 0.06;
+          if (Math.abs(p.vy) < 0.03) p.vy += (Math.random() - 0.5) * 0.04;
+
+          p.x += p.vx * (dt / 16);
+          p.y += p.vy * (dt / 16);
+
+          // Wrap around edges (full-width seamless)
+          if (p.x < -10)  p.x = W + 10;
+          if (p.x > W + 10) p.x = -10;
+          if (p.y < -10)  p.y = H + 10;
+          if (p.y > H + 10) p.y = -10;
+
+          p.pulse += p.pulseSpd;
         }
       }
 
-      /* -- Draw sphere nodes (sorted back to front) -- */
-      for (const { p, i } of sorted) {
-        const brightness = 0.3 + p.scale * 0.7;
-        const radius = Math.max(1.5, p.scale * (isMobile ? 3.5 : 4.5));
-        // Node glow
-        if (isDark) {
-          const ng = ctx.createRadialGradient(p.sx, p.sy, 0, p.sx, p.sy, radius * 2.8);
-          ng.addColorStop(0, `rgba(56,189,248,${brightness * 0.55})`);
-          ng.addColorStop(1, 'rgba(56,189,248,0)');
-          ctx.fillStyle = ng;
+      /* ---- LAYER 5: Neural connections ---- */
+      ctx.save();
+      for (let i = 0; i < particles.length; i++) {
+        const pi = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const pj = particles[j];
+          const dx = pi.x - pj.x, dy = pi.y - pj.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECT_DIST) {
+            const alpha = isDark
+              ? (1 - dist / CONNECT_DIST) * 0.28
+              : (1 - dist / CONNECT_DIST) * 0.10;
+            ctx.beginPath();
+            ctx.moveTo(pi.x, pi.y);
+            ctx.lineTo(pj.x, pj.y);
+            // Gradient line from cyan to blue
+            const grad = ctx.createLinearGradient(pi.x, pi.y, pj.x, pj.y);
+            grad.addColorStop(0, `rgba(103,232,249,${alpha.toFixed(3)})`);
+            grad.addColorStop(1, `rgba(56,189,248,${alpha.toFixed(3)})`);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = pi.hot || pj.hot ? 1.0 : 0.65;
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.restore();
+
+      /* ---- LAYER 6: Draw particles ---- */
+      for (const p of particles) {
+        const alpha = isDark
+          ? p.alpha + Math.sin(p.pulse) * 0.18
+          : p.alpha * 0.5;
+        const a = Math.max(0.05, Math.min(0.9, alpha));
+        const r = p.hot ? p.r * 2.2 : p.r;
+
+        if (isDark && p.hot) {
+          // Hotspot glow
+          const hg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 5);
+          hg.addColorStop(0, `rgba(103,232,249,${a})`);
+          hg.addColorStop(0.3, `rgba(56,189,248,${a * 0.5})`);
+          hg.addColorStop(1, 'rgba(56,189,248,0)');
+          ctx.fillStyle = hg;
           ctx.beginPath();
-          ctx.arc(p.sx, p.sy, radius * 2.8, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, r * 5, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (isDark) {
+          // Regular glow halo
+          const rg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 3);
+          rg.addColorStop(0, `rgba(56,189,248,${a * 0.45})`);
+          rg.addColorStop(1, 'rgba(56,189,248,0)');
+          ctx.fillStyle = rg;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r * 3, 0, Math.PI * 2);
           ctx.fill();
         }
-        // Node dot
+
+        // Core dot
         ctx.beginPath();
-        ctx.arc(p.sx, p.sy, radius, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fillStyle = isDark
-          ? `rgba(103,232,249,${brightness * 0.95})`
-          : `rgba(2,132,199,${brightness * 0.6})`;
+          ? `rgba(${p.hot ? '255,255,255' : '103,232,249'},${a})`
+          : `rgba(2,132,199,${a})`;
         ctx.fill();
       }
 
-      /* -- Orbiting data rings -- */
-      for (const ring of rings) {
-        ring.dotOffset += ring.speed * (dt / 16);
-        const steps = 90;
-        ctx.beginPath();
-        for (let k = 0; k <= steps; k++) {
-          const angle = (k / steps) * Math.PI * 2;
-          const rx = Math.cos(angle) * ring.radius;
-          const ry = Math.sin(angle) * ring.radius * Math.cos(ring.tiltX);
-          const rz = Math.sin(angle) * ring.radius * Math.sin(ring.tiltX);
-          // apply tiltZ
-          const finalX = rx * Math.cos(ring.tiltZ) - rz * Math.sin(ring.tiltZ);
-          const finalZ = rx * Math.sin(ring.tiltZ) + rz * Math.cos(ring.tiltZ);
-          // apply scene rotation Y
-          const fx = finalX * Math.cos(rotY) + finalZ * Math.sin(rotY);
-          const fz = -finalX * Math.sin(rotY) + finalZ * Math.cos(rotY);
-          const proj = project(fx, ry, fz, cx, cy, FOV);
-          if (k === 0) ctx.moveTo(proj.sx, proj.sy);
-          else ctx.lineTo(proj.sx, proj.sy);
+      /* ---- LAYER 7: Ripple waves ---- */
+      rippleTimer += dt;
+      if (rippleTimer > 1400 && ripples.length < MAX_RIPPLES) {
+        spawnRipple();
+        rippleTimer = 0;
+      }
+
+      for (let ri = ripples.length - 1; ri >= 0; ri--) {
+        const rp = ripples[ri];
+        rp.radius += rp.speed * (dt / 16);
+        rp.alpha  -= 0.0025 * (dt / 16);
+        if (rp.alpha <= 0 || rp.radius >= rp.maxR) {
+          ripples.splice(ri, 1);
+          continue;
         }
-        ctx.closePath();
-        ctx.strokeStyle = isDark ? 'rgba(56,189,248,0.14)' : 'rgba(2,132,199,0.06)';
-        ctx.lineWidth = 0.8;
+        const ripAlpha = isDark ? rp.alpha : rp.alpha * 0.4;
+
+        // Outer glow ring
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${rp.color},${(ripAlpha * 0.4).toFixed(3)})`;
+        ctx.lineWidth = 6;
         ctx.stroke();
 
-        // Orbiting glowing dots on the ring
-        for (let d = 0; d < ring.dotCount; d++) {
-          const dAngle = ring.dotOffset + (d / ring.dotCount) * Math.PI * 2;
-          const drx = Math.cos(dAngle) * ring.radius;
-          const dry = Math.sin(dAngle) * ring.radius * Math.cos(ring.tiltX);
-          const drz = Math.sin(dAngle) * ring.radius * Math.sin(ring.tiltX);
-          const dfx = drx * Math.cos(ring.tiltZ) - drz * Math.sin(ring.tiltZ);
-          const dfz = drx * Math.sin(ring.tiltZ) + drz * Math.cos(ring.tiltZ);
-          const dfx2 = dfx * Math.cos(rotY) + dfz * Math.sin(rotY);
-          const dfz2 = -dfx * Math.sin(rotY) + dfz * Math.cos(rotY);
-          const dp = project(dfx2, dry, dfz2, cx, cy, FOV);
-          const dg = ctx.createRadialGradient(dp.sx, dp.sy, 0, dp.sx, dp.sy, 10);
-          dg.addColorStop(0, isDark ? 'rgba(103,232,249,0.9)' : 'rgba(2,132,199,0.7)');
-          dg.addColorStop(1, 'rgba(56,189,248,0)');
-          ctx.fillStyle = dg;
+        // Sharp inner ring
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${rp.color},${ripAlpha.toFixed(3)})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+
+      /* ---- LAYER 8: Meteor streams ---- */
+      meteorTimer += dt;
+      if (meteorTimer > 2200 && meteors.length < MAX_METEORS) {
+        spawnMeteor();
+        meteorTimer = 0;
+      }
+
+      for (let mi = meteors.length - 1; mi >= 0; mi--) {
+        const m = meteors[mi];
+        m.x += m.vx * (dt / 16);
+        m.y += m.vy * (dt / 16);
+
+        if (m.x > W + m.len) {
+          meteors.splice(mi, 1);
+          continue;
+        }
+
+        if (isDark) {
+          const mg = ctx.createLinearGradient(m.x, m.y, m.x - m.len, m.y);
+          mg.addColorStop(0, `rgba(${m.color},${m.alpha})`);
+          mg.addColorStop(0.3, `rgba(${m.color},${m.alpha * 0.5})`);
+          mg.addColorStop(1, `rgba(${m.color},0)`);
           ctx.beginPath();
-          ctx.arc(dp.sx, dp.sy, 10, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.moveTo(m.x, m.y);
+          ctx.lineTo(m.x - m.len, m.y);
+          ctx.strokeStyle = mg;
+          ctx.lineWidth = 1.8;
+          ctx.stroke();
+
+          // Bright head
+          const mh = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 6);
+          mh.addColorStop(0, `rgba(255,255,255,${m.alpha})`);
+          mh.addColorStop(0.4, `rgba(${m.color},${m.alpha * 0.7})`);
+          mh.addColorStop(1, `rgba(${m.color},0)`);
+          ctx.fillStyle = mh;
           ctx.beginPath();
-          ctx.arc(dp.sx, dp.sy, 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = isDark ? 'rgba(255,255,255,0.95)' : 'rgba(2,132,199,0.9)';
+          ctx.arc(m.x, m.y, 6, 0, Math.PI * 2);
           ctx.fill();
         }
       }
