@@ -6,14 +6,14 @@
 
 /* ===== 1. THEME DESIGN TOKENS ===== */
 :root {
-  /* Midnight Deep Navy — rich, premium dark */
+  /* Midnight Deep Navy — rich, premium translucent dark */
   --bg-primary:          #030C1A;
-  --bg-secondary:        #071525;
-  --bg-card:             rgba(7, 21, 37, 0.85);
-  --bg-card-hover:       rgba(10, 28, 52, 0.96);
-  --bg-card-solid:       #091d35;
-  --bg-glass:            rgba(3, 12, 26, 0.82);
-  --bg-elevated:         #0c2040;
+  --bg-secondary:        rgba(6, 18, 36, 0.40);
+  --bg-card:             rgba(7, 22, 44, 0.48);
+  --bg-card-hover:       rgba(12, 32, 62, 0.70);
+  --bg-card-solid:       rgba(9, 26, 50, 0.65);
+  --bg-glass:            rgba(3, 12, 26, 0.50);
+  --bg-elevated:         rgba(12, 32, 64, 0.58);
 
   /* Typography Colors */
   --text-primary:        #f0f6ff;
@@ -80,12 +80,12 @@
    applies data-theme="light", it still renders in dark navy. */
 [data-theme="light"] {
   --bg-primary:          #030C1A;
-  --bg-secondary:        #071525;
-  --bg-card:             rgba(7, 21, 37, 0.85);
-  --bg-card-hover:       rgba(10, 25, 48, 0.95);
-  --bg-card-solid:       #071525;
-  --bg-glass:            rgba(5, 11, 24, 0.75);
-  --bg-elevated:         #0A1426;
+  --bg-secondary:        rgba(6, 18, 36, 0.40);
+  --bg-card:             rgba(7, 22, 44, 0.48);
+  --bg-card-hover:       rgba(12, 32, 62, 0.70);
+  --bg-card-solid:       rgba(9, 26, 50, 0.65);
+  --bg-glass:            rgba(3, 12, 26, 0.50);
+  --bg-elevated:         rgba(12, 32, 64, 0.58);
 
   --text-primary:        #f0f8ff;
   --text-secondary:      #94a3b8;
@@ -249,8 +249,10 @@ body::before {
 
 .section-alt {
   background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(56, 189, 248, 0.12);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
 }
 
 .section-header {
@@ -2079,8 +2081,8 @@ body::before {
 }
 
 .tc-table thead tr {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  background: rgba(10, 28, 54, 0.55);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.18);
 }
 
 .tc-table th {
@@ -2276,8 +2278,8 @@ body::before {
   align-items: center;
   gap: 10px;
   padding: 14px 20px;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  background: rgba(10, 28, 54, 0.45);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.16);
   flex-wrap: wrap;
 }
 
@@ -2758,8 +2760,8 @@ body::before {
   font-size: 0.72rem;
   font-family: var(--font-mono);
   color: var(--text-secondary);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  background: rgba(10, 28, 54, 0.45);
+  border: 1px solid rgba(56, 189, 248, 0.16);
   padding: 3px 9px;
   border-radius: 6px;
   display: inline-flex;
@@ -2768,8 +2770,8 @@ body::before {
 }
 
 .cc-purpose {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  background: rgba(10, 28, 54, 0.42);
+  border: 1px solid rgba(56, 189, 248, 0.12);
   border-radius: var(--radius-sm);
   padding: 12px 14px;
 }
@@ -3382,9 +3384,11 @@ body::before {
 /* --- 2. Stats / Facts Section (iPortfolio Style) --- */
 .section-stats {
   padding: 60px 0;
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(56, 189, 248, 0.12);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
 }
 
 .stats-grid-v2 {
@@ -3967,7 +3971,7 @@ body::before {
    19b. MILD ANIMATIONS ABOVE DARK NAVY BLUE BOXES & SECTIONS
    ============================================================ */
 
-/* 1. Luminous Traveling Light Beam on all Content Cards */
+/* 1. Translucent Glassmorphic Cards with Breathing Ambient Glow */
 .service-card-v2,
 .cert-card-v2,
 .skill-category-card,
@@ -3983,12 +3987,50 @@ body::before {
 .tc-table-wrapper {
   position: relative;
   overflow: hidden;
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
   border: 1px solid rgba(56, 189, 248, 0.18) !important;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), 0 0 1px rgba(56, 189, 248, 0.25);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.38), inset 0 0 16px rgba(56, 189, 248, 0.02);
+  animation: mildCardPulse 7s ease-in-out infinite;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
 
-/* Subtle electric-cyan scanning beam running across the top of each dark box */
+/* Stagger breathing pulse across cards so elements feel natural and alive */
+.cert-card-v2:nth-child(2) { animation-delay: 1.2s; }
+.cert-card-v2:nth-child(3) { animation-delay: 2.4s; }
+.cert-card-v2:nth-child(4) { animation-delay: 3.6s; }
+.cert-card-v2:nth-child(5) { animation-delay: 4.8s; }
+.cert-card-v2:nth-child(6) { animation-delay: 6.0s; }
+
+.service-card-v2:nth-child(2) { animation-delay: 1.2s; }
+.service-card-v2:nth-child(3) { animation-delay: 2.4s; }
+.service-card-v2:nth-child(4) { animation-delay: 3.6s; }
+.service-card-v2:nth-child(5) { animation-delay: 4.8s; }
+.service-card-v2:nth-child(6) { animation-delay: 6.0s; }
+
+.skill-category-card:nth-child(2) { animation-delay: 2.3s; }
+.skill-category-card:nth-child(3) { animation-delay: 4.6s; }
+
+.bug-card:nth-child(2) { animation-delay: 2.2s; }
+.bug-card:nth-child(3) { animation-delay: 4.4s; }
+
+.stat-box-v2:nth-child(2) { animation-delay: 1.5s; }
+.stat-box-v2:nth-child(3) { animation-delay: 3.0s; }
+.stat-box-v2:nth-child(4) { animation-delay: 4.5s; }
+
+@keyframes mildCardPulse {
+  0%, 100% {
+    border-color: rgba(56, 189, 248, 0.16);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.38), inset 0 0 15px rgba(56, 189, 248, 0.02);
+  }
+  50% {
+    border-color: rgba(56, 189, 248, 0.32);
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.46), 0 0 16px rgba(56, 189, 248, 0.12), inset 0 0 22px rgba(56, 189, 248, 0.06);
+  }
+}
+
+/* 2. Subtle electric-cyan scanning beam running across the top edge of each box */
 .service-card-v2::before,
 .cert-card-v2::before,
 .skill-category-card::before,
@@ -4039,7 +4081,7 @@ body::before {
   100% { left: 200%; opacity: 0; }
 }
 
-/* 2. Interactive Spotlight that gently illuminates card surfaces on hover */
+/* 3. Mild Diagonal Crystal Sheen sweeping across card surfaces */
 .service-card-v2::after,
 .cert-card-v2::after,
 .skill-category-card::after,
@@ -4048,38 +4090,80 @@ body::before {
 .about-text-card::after,
 .about-profile-card::after,
 .project-feature-card::after,
-.resume-card::after {
+.academic-showcase-card::after,
+.resume-card::after,
+.contact-info-panel::after,
+.contact-form-panel::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.09), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent 25%, rgba(56, 189, 248, 0.04) 45%, rgba(103, 232, 249, 0.12) 50%, rgba(56, 189, 248, 0.04) 55%, transparent 75%);
+  transform: translateX(-150%) skewX(-20deg);
+  animation: cardSheenSweep 9s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
 }
 
-.service-card-v2:hover::after,
-.cert-card-v2:hover::after,
-.skill-category-card:hover::after,
-.stat-box-v2:hover::after,
-.bug-card:hover::after,
-.about-text-card:hover::after,
-.about-profile-card:hover::after,
-.project-feature-card:hover::after,
-.resume-card:hover::after {
-  opacity: 1;
+.service-card-v2:nth-child(2)::after { animation-delay: 1.5s; }
+.service-card-v2:nth-child(3)::after { animation-delay: 3.0s; }
+.service-card-v2:nth-child(4)::after { animation-delay: 4.5s; }
+.service-card-v2:nth-child(5)::after { animation-delay: 6.0s; }
+.service-card-v2:nth-child(6)::after { animation-delay: 7.5s; }
+
+.cert-card-v2:nth-child(2)::after { animation-delay: 1.5s; }
+.cert-card-v2:nth-child(3)::after { animation-delay: 3.0s; }
+.cert-card-v2:nth-child(4)::after { animation-delay: 4.5s; }
+.cert-card-v2:nth-child(5)::after { animation-delay: 6.0s; }
+.cert-card-v2:nth-child(6)::after { animation-delay: 7.5s; }
+
+.skill-category-card:nth-child(2)::after { animation-delay: 3.0s; }
+.skill-category-card:nth-child(3)::after { animation-delay: 6.0s; }
+
+.bug-card:nth-child(2)::after { animation-delay: 3.0s; }
+.bug-card:nth-child(3)::after { animation-delay: 6.0s; }
+
+.stat-box-v2:nth-child(2)::after { animation-delay: 2.2s; }
+.stat-box-v2:nth-child(3)::after { animation-delay: 4.5s; }
+.stat-box-v2:nth-child(4)::after { animation-delay: 6.7s; }
+
+@keyframes cardSheenSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  26% {
+    transform: translateX(200%) skewX(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+    opacity: 0;
+  }
 }
 
-/* 3. Mild Breathing Glow on Card Hover */
+/* 4. Mild Breathing Glow and Lift on Hover */
 .service-card-v2:hover,
 .cert-card-v2:hover,
 .skill-category-card:hover,
 .stat-box-v2:hover,
 .bug-card:hover,
-.academic-showcase-card:hover {
-  border-color: rgba(56, 189, 248, 0.45) !important;
+.about-text-card:hover,
+.about-profile-card:hover,
+.project-feature-card:hover,
+.academic-showcase-card:hover,
+.resume-card:hover,
+.contact-info-panel:hover,
+.contact-form-panel:hover {
+  background: var(--bg-card-hover) !important;
+  border-color: rgba(56, 189, 248, 0.48) !important;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 24px rgba(56, 189, 248, 0.22) !important;
+  transform: translateY(-4px);
 }
 
 /* 4. Mild Animated Header Tags & Status Badges */
