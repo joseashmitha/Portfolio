@@ -14,9 +14,25 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css" />
-  <!-- Force dark background immediately — prevents white flash before JS runs -->
+  <!-- Force dark background & ensure background canvas is 100% visible -->
   <style>
-    html, body { background-color: #030C1A !important; }
+    html { background-color: #030C1A !important; }
+    body { background-color: transparent !important; }
+    .bg-canvas {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 0 !important;
+      pointer-events: none !important;
+      display: block !important;
+      opacity: 1 !important;
+    }
+    header, section, footer {
+      position: relative !important;
+      z-index: 1 !important;
+    }
   </style>
   <!-- Clear any stored light theme from localStorage immediately -->
   <script>try { localStorage.setItem('ja_portfolio_theme','dark'); document.documentElement.setAttribute('data-theme','dark'); } catch(e){}</script>
@@ -155,7 +171,7 @@
 
           <div class="photo-frame">
             <img
-              src="Images/Jose_Ashmitha_Portrait.jpg"
+              src="Images/Jose_Ashmitha_Hero_Portrait.jpg?v=3"
               alt="Jose Ashmitha V. — Aspiring Software Tester &amp; QA Engineer"
               class="hero-portrait-img"
               loading="eager"
@@ -211,7 +227,7 @@
         <div class="about-profile-card">
           <div class="apc-photo-wrap">
             <img 
-              src="Images/Jose_Ashmitha_Portrait.jpg" 
+              src="Images/Jose_Ashmitha_Hero_Portrait.jpg?v=3" 
               alt="Jose Ashmitha V. — QA Engineer" 
               class="apc-photo"
               loading="lazy"
