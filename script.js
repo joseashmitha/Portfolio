@@ -8,58 +8,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================
-     1. THEME SWITCHER (Dark Navy <-> Executive Light)
+     1. THEME — DARK NAVY ONLY (light theme disabled permanently)
      ========================================================== */
   const themeToggle = document.getElementById('themeToggle');
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
-  function getStoredTheme() {
-    const saved = localStorage.getItem('ja_portfolio_theme');
-    if (saved === 'dark' || saved === 'light') return saved;
-    // Default to system preference, fallback to dark
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches 
-      ? 'light' 
-      : 'dark';
-  }
-
   function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('ja_portfolio_theme', theme);
+    // Always force dark — ignore any light request
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('ja_portfolio_theme', 'dark');
 
     if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'light' ? '#f8fafc' : '#050B18');
+      metaThemeColor.setAttribute('content', '#030C1A');
     }
 
     if (themeToggle) {
-      themeToggle.setAttribute('title', theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode');
-      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+      themeToggle.setAttribute('title', 'Dark Mode Active');
+      themeToggle.setAttribute('aria-label', 'Dark Mode Active');
     }
 
-    // Notify background canvas of theme change
+    // Notify background canvas
     if (window.updateCanvasTheme) {
-      window.updateCanvasTheme(theme);
+      window.updateCanvasTheme('dark');
     }
   }
 
-  // Initialize theme
-  const currentTheme = getStoredTheme();
-  applyTheme(currentTheme);
+  // Always initialize to dark
+  applyTheme('dark');
 
+  // Theme toggle button — keep dark always, do nothing on click
   if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(newTheme);
-    });
-  }
-
-  // Listen to OS system color scheme changes if user hasn't explicitly set preference
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-      if (!localStorage.getItem('ja_portfolio_theme')) {
-        applyTheme(e.matches ? 'light' : 'dark');
-      }
-    });
+    themeToggle.style.display = 'none'; // hide toggle so users can't switch to light
   }
 
   /* ==========================================================

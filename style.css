@@ -75,40 +75,43 @@
 }
 
 /* ===== LIGHT THEME (Crisp Executive Slate) ===== */
+/* ===== FORCE DARK NAVY — light theme overridden to match dark =====
+   The theme toggle is hidden; this block ensures if any browser ever
+   applies data-theme="light", it still renders in dark navy. */
 [data-theme="light"] {
-  --bg-primary:          #f8fafc;
-  --bg-secondary:        #f1f5f9;
-  --bg-card:             rgba(255, 255, 255, 0.88);
-  --bg-card-hover:       #ffffff;
-  --bg-card-solid:       #ffffff;
-  --bg-glass:            rgba(248, 250, 252, 0.88);
-  --bg-elevated:         #ffffff;
+  --bg-primary:          #030C1A;
+  --bg-secondary:        #071525;
+  --bg-card:             rgba(7, 21, 37, 0.85);
+  --bg-card-hover:       rgba(10, 25, 48, 0.95);
+  --bg-card-solid:       #071525;
+  --bg-glass:            rgba(5, 11, 24, 0.75);
+  --bg-elevated:         #0A1426;
 
-  --text-primary:        #0f172a;
-  --text-secondary:      #475569;
+  --text-primary:        #f0f8ff;
+  --text-secondary:      #94a3b8;
   --text-muted:          #64748b;
-  --text-inverse:        #ffffff;
+  --text-inverse:        #030C1A;
 
-  --accent-blue:         #2563eb;
-  --accent-cyan:         #0284c7;
-  --accent-cyan-bright:  #0369a1;
-  --accent-violet:       #6366f1;
-  --accent-purple:       #9333ea;
+  --accent-blue:         #38BDF8;
+  --accent-cyan:         #38BDF8;
+  --accent-cyan-bright:  #67E8F9;
+  --accent-violet:       #818cf8;
+  --accent-purple:       #c084fc;
 
-  --accent-glow-subtle:  rgba(2, 132, 199, 0.06);
-  --accent-glow:         rgba(2, 132, 199, 0.12);
-  --accent-glow-strong:  rgba(2, 132, 199, 0.22);
-  --gradient-accent:     linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #6366f1 100%);
-  --gradient-glow:       radial-gradient(circle, rgba(2, 132, 199, 0.12) 0%, rgba(248, 250, 252, 0) 70%);
+  --accent-glow-subtle:  rgba(56, 189, 248, 0.06);
+  --accent-glow:         rgba(56, 189, 248, 0.14);
+  --accent-glow-strong:  rgba(56, 189, 248, 0.26);
+  --gradient-accent:     linear-gradient(135deg, #38BDF8 0%, #818cf8 50%, #c084fc 100%);
+  --gradient-glow:       radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, rgba(3, 12, 26, 0) 70%);
 
-  --border-color:        rgba(15, 23, 42, 0.1);
-  --border-hover:        rgba(2, 132, 199, 0.4);
-  --border-subtle:       rgba(15, 23, 42, 0.05);
+  --border-color:        rgba(56, 189, 248, 0.14);
+  --border-hover:        rgba(56, 189, 248, 0.42);
+  --border-subtle:       rgba(56, 189, 248, 0.07);
 
-  --shadow-sm:           0 2px 8px rgba(15, 23, 42, 0.06);
-  --shadow-card:         0 8px 30px rgba(15, 23, 42, 0.07);
-  --shadow-hover:        0 14px 40px rgba(15, 23, 42, 0.12), 0 0 20px rgba(2, 132, 199, 0.1);
-  --shadow-glow:         0 0 25px rgba(2, 132, 199, 0.15);
+  --shadow-sm:           0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-card:         0 8px 30px rgba(0, 0, 0, 0.4);
+  --shadow-hover:        0 14px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15);
+  --shadow-glow:         0 0 25px rgba(56, 189, 248, 0.18);
 }
 
 /* ===== 2. RESET & BASE ===== */

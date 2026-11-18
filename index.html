@@ -14,6 +14,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css" />
+  <!-- Force dark background immediately — prevents white flash before JS runs -->
+  <style>
+    html, body { background-color: #030C1A !important; }
+  </style>
 </head>
 <body>
 
@@ -167,9 +171,14 @@
             <i class="fas fa-shield-halved"></i> QA Ready
           </div>
 
-          <!-- Verified Badge -->
+          <!-- Verified Badge (top-left) -->
           <div class="photo-badge photo-badge-tl">
             <i class="fas fa-circle-check"></i> QA Verified
+          </div>
+
+          <!-- First Class with Distinction badge (bottom-right) -->
+          <div class="photo-badge photo-badge-br">
+            <i class="fas fa-award"></i> First Class Distinction
           </div>
         </div>
       </div>
