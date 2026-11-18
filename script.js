@@ -968,20 +968,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================
-     8b. TILT CARD 3D HOVER EFFECT
+     8b. TILT CARD 3D HOVER EFFECT & INTERACTIVE CARD SPOTLIGHT
      ========================================================== */
-  if (!prefersReducedMotion && !('ontouchstart' in window)) {
-    document.querySelectorAll('.service-card-v2, .cert-card-v2, .project-feature-card, .stat-box-v2').forEach(card => {
-      card.classList.add('tilt-card');
-
+  if (!('ontouchstart' in window)) {
+    const interactiveCards = document.querySelectorAll('.service-card-v2, .cert-card-v2, .skill-category-card, .stat-box-v2, .bug-card, .about-text-card, .about-profile-card, .project-feature-card, .resume-card');
+    
+    interactiveCards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const tiltX = -(y * 8).toFixed(2);
-        const tiltY  = (x * 8).toFixed(2);
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        // Subtle 3D tilt
+        const normX = x / rect.width - 0.5;
+        const normY = y / rect.height - 0.5;
+        const tiltX = -(normY * 6).toFixed(2);
+        const tiltY  = (normX * 6).toFixed(2);
         card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
-      });
+      }, { passive: true });
 
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';

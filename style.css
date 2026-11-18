@@ -909,13 +909,13 @@ body::before {
 .video-frame-outer,
 .photo-frame-outer {
   position: relative;
-  width: 360px;
-  height: 420px;
+  width: 410px;
+  height: 318px;
   max-width: 100%;
-  border-radius: 28px;
+  border-radius: 22px;
   padding: 3px;
   background: linear-gradient(145deg, rgba(56, 189, 248, 0.55) 0%, rgba(103, 232, 249, 0.30) 30%, rgba(10, 20, 38, 0.6) 60%, rgba(5, 11, 24, 0.95) 100%);
-  box-shadow: var(--shadow-card), 0 0 50px rgba(56, 189, 248, 0.18), inset 0 0 30px rgba(56, 189, 248, 0.04);
+  box-shadow: var(--shadow-card), 0 0 50px rgba(56, 189, 248, 0.22), inset 0 0 30px rgba(56, 189, 248, 0.04);
   animation: heroFloat 8s ease-in-out infinite alternate;
   transition: transform 0.45s ease, box-shadow 0.45s ease;
 }
@@ -958,7 +958,7 @@ body::before {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
+  border-radius: 20px;
   overflow: hidden;
   background: #050B18;
   border: 1px solid rgba(56, 189, 248, 0.22);
@@ -1236,20 +1236,20 @@ body::before {
 }
 
 .hero-float-tag-1 {
-  top: 20%;
-  right: -30px;
+  top: -12px;
+  right: 32px;
   animation: floatTag1 5s ease-in-out infinite alternate;
 }
 
 .hero-float-tag-2 {
-  bottom: 28%;
-  right: -26px;
+  bottom: -14px;
+  left: 24px;
   animation: floatTag2 6s ease-in-out infinite alternate;
 }
 
 .hero-float-tag-3 {
   top: 48%;
-  left: -32px;
+  right: -36px;
   animation: floatTag3 7s ease-in-out infinite alternate;
 }
 
@@ -3740,8 +3740,8 @@ body::before {
   }
   .video-frame-outer,
   .photo-frame-outer {
-    width: 310px;
-    height: 420px;
+    width: 360px;
+    height: 280px;
   }
 }
 
@@ -3769,8 +3769,8 @@ body::before {
   }
   .video-frame-outer,
   .photo-frame-outer {
-    width: 290px;
-    height: 390px;
+    width: 330px;
+    height: 256px;
     margin: 0 auto;
   }
 
@@ -3877,8 +3877,8 @@ body::before {
   }
   .video-frame-outer,
   .photo-frame-outer {
-    width: 250px;
-    height: 340px;
+    width: 290px;
+    height: 225px;
   }
   .hero-stats {
     flex-wrap: wrap;
@@ -3961,6 +3961,221 @@ body::before {
     bottom: 20px;
     right: 20px;
   }
+}
+
+/* ============================================================
+   19b. MILD ANIMATIONS ABOVE DARK NAVY BLUE BOXES & SECTIONS
+   ============================================================ */
+
+/* 1. Luminous Traveling Light Beam on all Content Cards */
+.service-card-v2,
+.cert-card-v2,
+.skill-category-card,
+.stat-box-v2,
+.bug-card,
+.about-text-card,
+.about-profile-card,
+.project-feature-card,
+.academic-showcase-card,
+.resume-card,
+.contact-info-panel,
+.contact-form-panel,
+.tc-table-wrapper {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.18) !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), 0 0 1px rgba(56, 189, 248, 0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Subtle electric-cyan scanning beam running across the top of each dark box */
+.service-card-v2::before,
+.cert-card-v2::before,
+.skill-category-card::before,
+.stat-box-v2::before,
+.bug-card::before,
+.about-text-card::before,
+.about-profile-card::before,
+.project-feature-card::before,
+.academic-showcase-card::before,
+.resume-card::before,
+.contact-info-panel::before,
+.contact-form-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.85), rgba(103, 232, 249, 1), transparent);
+  animation: cardBeamSlide 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.service-card-v2:nth-child(2)::before { animation-delay: 1.2s; }
+.service-card-v2:nth-child(3)::before { animation-delay: 2.4s; }
+.service-card-v2:nth-child(4)::before { animation-delay: 3.6s; }
+.service-card-v2:nth-child(5)::before { animation-delay: 4.8s; }
+.service-card-v2:nth-child(6)::before { animation-delay: 6.0s; }
+
+.stat-box-v2:nth-child(2)::before { animation-delay: 1.5s; }
+.stat-box-v2:nth-child(3)::before { animation-delay: 3.0s; }
+.stat-box-v2:nth-child(4)::before { animation-delay: 4.5s; }
+
+.skill-category-card:nth-child(2)::before { animation-delay: 2.2s; }
+.skill-category-card:nth-child(3)::before { animation-delay: 4.4s; }
+
+.cert-card-v2:nth-child(odd)::before { animation-delay: 1.8s; }
+.cert-card-v2:nth-child(even)::before { animation-delay: 3.6s; }
+
+.bug-card:nth-child(2)::before { animation-delay: 2.0s; }
+.bug-card:nth-child(3)::before { animation-delay: 4.0s; }
+
+@keyframes cardBeamSlide {
+  0%   { left: -100%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { left: 200%; opacity: 0; }
+}
+
+/* 2. Interactive Spotlight that gently illuminates card surfaces on hover */
+.service-card-v2::after,
+.cert-card-v2::after,
+.skill-category-card::after,
+.stat-box-v2::after,
+.bug-card::after,
+.about-text-card::after,
+.about-profile-card::after,
+.project-feature-card::after,
+.resume-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(340px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.09), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.service-card-v2:hover::after,
+.cert-card-v2:hover::after,
+.skill-category-card:hover::after,
+.stat-box-v2:hover::after,
+.bug-card:hover::after,
+.about-text-card:hover::after,
+.about-profile-card:hover::after,
+.project-feature-card:hover::after,
+.resume-card:hover::after {
+  opacity: 1;
+}
+
+/* 3. Mild Breathing Glow on Card Hover */
+.service-card-v2:hover,
+.cert-card-v2:hover,
+.skill-category-card:hover,
+.stat-box-v2:hover,
+.bug-card:hover,
+.academic-showcase-card:hover {
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 24px rgba(56, 189, 248, 0.22) !important;
+}
+
+/* 4. Mild Animated Header Tags & Status Badges */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  animation: tagPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes tagPulse {
+  0%   { border-color: rgba(56, 189, 248, 0.25); box-shadow: 0 0 8px rgba(56, 189, 248, 0.1); }
+  100% { border-color: rgba(103, 232, 249, 0.55); box-shadow: 0 0 18px rgba(56, 189, 248, 0.25); }
+}
+
+.section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: dotBlink 2s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.65); }
+}
+
+/* 5. Animated Shimmering Text Accents */
+.section-title .accent,
+.hero-name .name-accent {
+  background: linear-gradient(135deg, #38BDF8 0%, #67E8F9 35%, #A78BFA 70%, #38BDF8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 6s linear infinite;
+}
+
+@keyframes textShimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* 6. Continuous Travelling Light Sheen on Skill Progress Bars */
+.skill-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  animation: barShimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes barShimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* 7. Mild Breathing Glow on Verified Status & Distinction Badges */
+.status-pass {
+  animation: passGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes passGlow {
+  0%   { box-shadow: 0 0 6px rgba(34, 197, 94, 0.2); }
+  100% { box-shadow: 0 0 16px rgba(34, 197, 94, 0.5); }
+}
+
+.photo-badge-br {
+  animation: distinctionGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes distinctionGlow {
+  0%   { box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25); border-color: rgba(245, 158, 11, 0.35); }
+  100% { box-shadow: 0 4px 24px rgba(245, 158, 11, 0.55), 0 0 12px rgba(245, 158, 11, 0.35); border-color: rgba(245, 158, 11, 0.75); }
+}
+
+.photo-badge-tl {
+  animation: qaVerifiedGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes qaVerifiedGlow {
+  0%   { box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25); border-color: rgba(56, 189, 248, 0.35); }
+  100% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.55), 0 0 12px rgba(56, 189, 248, 0.35); border-color: rgba(56, 189, 248, 0.75); }
 }
 
 /* ===== 20. PREFERS REDUCED MOTION ===== */
